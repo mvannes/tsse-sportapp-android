@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SportApp</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="forgot_password_info">Enter your email below to receive your  password reset instructions.</string>
+    <string name="email">Email</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
