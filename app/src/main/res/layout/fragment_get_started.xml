@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:text="@string/get_started"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
         android:background="@drawable/rounded_button"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
