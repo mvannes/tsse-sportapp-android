@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        forgot_password_text_view.setOnClickListener {
+        forgotPasswordTextView.setOnClickListener {
             startActivity(Intent(activity, ForgotPasswordActivity::class.java))
         }
     }

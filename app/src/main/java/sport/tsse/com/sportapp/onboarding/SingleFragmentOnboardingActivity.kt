@@ -17,19 +17,21 @@ abstract class SingleFragmentOnboardingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_onboarding_fragment)
         initActionBar()
 
-        var fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        var fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
 
         if (fragment == null) {
             fragment = createFragment()
             supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
+                    .add(R.id.fragmentContainer, fragment)
                     .commit()
         }
     }
     
     private fun initActionBar() {
         setSupportActionBar(setToolbar())
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
     }
 }

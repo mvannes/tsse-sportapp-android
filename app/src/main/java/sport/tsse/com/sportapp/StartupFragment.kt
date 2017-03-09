@@ -19,11 +19,11 @@ class StartupFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        start_now_button.setOnClickListener {
+        startNowButton.setOnClickListener {
             startActivity(Intent(activity, RegisterActivity::class.java))
         }
 
-        login_text_view.setOnClickListener {
+        loginTextView.setOnClickListener {
             startActivity(Intent(activity, LoginActivity::class.java))
         }
     }
