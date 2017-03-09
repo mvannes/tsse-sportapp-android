@@ -70,19 +70,6 @@
         android:layout_marginRight="1dp" />
 
     <TextView
-        android:id="@+id/seperator_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:layout_marginEnd="37dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/login_button"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
-        android:layout_marginRight="37dp" />
-
-    <TextView
         android:id="@+id/forgot_password_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
