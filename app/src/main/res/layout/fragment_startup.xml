@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/start_now_button"
+        android:id="@+id/startNowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_started"
@@ -45,14 +45,14 @@
         android:text="@string/or"
         android:layout_marginStart="24dp"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/login_text_view"
+        app:layout_constraintBottom_toTopOf="@+id/loginTextView"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/login_text_view"
+        app:layout_constraintLeft_toLeftOf="@+id/loginTextView"
         android:layout_marginLeft="24dp" />
 
     <TextView
-        android:id="@+id/login_text_view"
+        android:id="@+id/loginTextView"
         android:layout_width="62dp"
         android:layout_height="49dp"
         android:text="@string/login_underlined"

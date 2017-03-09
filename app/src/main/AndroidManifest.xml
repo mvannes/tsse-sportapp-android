@@ -8,25 +8,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-
+            android:name=".StartupActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".ForgotPasswordActivity"
-            android:parentActivityName=".LoginActivity" />
-
+            android:name=".onboarding.register.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".StartupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".onboarding.forgotPassword.ForgotPasswordActivity"
+            android:parentActivityName="sport.tsse.com.sportapp.onboarding.login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="sport.tsse.com.sportapp.onboarding.login.LoginActivity"
+            android:parentActivityName=".StartupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".onboarding.SingleFragmentOnboardingActivity"></activity>
     </application>
 
 </manifest>

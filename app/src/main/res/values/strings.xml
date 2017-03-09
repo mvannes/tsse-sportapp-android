@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">SportApp</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="onboarding_email_text">What\'s your email address?</string>
+
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="forgot_password_info">Enter your email below to receive your  password reset instructions.</string>
     <string name="email">Email</string>
@@ -11,4 +15,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="forgot_password_underlined"><u>forgot password</u></string>
+    <string name="onboarding_email_hint">name@example.com</string>
+
 </resources>
