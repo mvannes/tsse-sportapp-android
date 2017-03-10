@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">SportApp</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="onboarding_email_text">What\'s your email address?</string>
+
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="forgot_password_info">Enter your email below to receive your  password reset instructions.</string>
     <string name="email">Email</string>
@@ -11,5 +15,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="forgot_password_underlined"><u>forgot password</u></string>
+
     <string name="exercise_instruction_mock">1. Lie back on a sturdy bench and grasp a bar with an overhand grip (slightly wider than shoulder width). Feet should be flat on the floor and back arched.\n2. Dismount the bar from the rack and lower the weight until it touches your middle chest.\n3. Press the bar upward until arms are fully extended (focus on using the chest muscles throughout the movement).\n4. Slowly lower bar back down to chest and repeat for desired repetitions.</string>
+
+    <string name="onboarding_email_hint">name@example.com</string>
+
 </resources>
