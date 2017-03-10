@@ -11,7 +11,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,11 @@
 
         <activity
             android:name=".ForgotPasswordActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
