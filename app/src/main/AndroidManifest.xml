@@ -34,6 +34,11 @@
             android:name="sport.tsse.com.sportapp.onboarding.login.LoginActivity"
             android:parentActivityName=".StartupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".exercise.ExerciseDetailActivity"
+            android:label="Detail"
+            android:parentActivityName=".StartupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

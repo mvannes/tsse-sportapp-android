@@ -16,8 +16,13 @@
     <string name="password">Password</string>
     <string name="forgot_password_underlined"><u>forgot password</u></string>
 
-    <string name="exercise_instruction_mock">1. Lie back on a sturdy bench and grasp a bar with an overhand grip (slightly wider than shoulder width). Feet should be flat on the floor and back arched.\n2. Dismount the bar from the rack and lower the weight until it touches your middle chest.\n3. Press the bar upward until arms are fully extended (focus on using the chest muscles throughout the movement).\n4. Slowly lower bar back down to chest and repeat for desired repetitions.</string>
+    <string name="exercise_instruction_mock">1. Lie back on a sturdy bench and grasp a bar with an overhand grip (slightly wider than shoulder width). Feet should be flat on the floor and back arched.\n\n2. Dismount the bar from the rack and lower the weight until it touches your middle chest.\n\n3. Press the bar upward until arms are fully extended (focus on using the chest muscles throughout the movement).\n\n4. Slowly lower bar back down to chest and repeat for desired repetitions.</string>
 
     <string name="onboarding_email_hint">name@example.com</string>
+    <string name="bench_description_hint">The bench press is a fundamental movement for developing upper body strength and an attention grabbing physique. It not only trains your chest, but gives the front shoulders, triceps and back a solid workout too.</string>
+    <string name="description">Description</string>
+    <string name="instruction">Instruction</string>
+    <string name="reps">Reps</string>
+    <string name="kilos">Kilos</string>
 
 </resources>
