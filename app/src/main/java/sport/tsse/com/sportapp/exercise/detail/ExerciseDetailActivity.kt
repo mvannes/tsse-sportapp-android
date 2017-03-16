@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp.exercise
+package sport.tsse.com.sportapp.exercise.detail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

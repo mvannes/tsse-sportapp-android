@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_schedules"
+            android:icon="@drawable/ic_schedules"
+            android:title="@string/schedules" />
+        <item
+            android:id="@+id/nav_workouts"
+            android:icon="@drawable/ic_workouts"
+            android:title="@string/workouts" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_statistics"
+            android:title="@string/statistics" />
+    </group>
+
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/nav_settings_account"
+                android:icon="@drawable/ic_account_black"
+                android:title="@string/account_settings" />
+            <item
+                android:id="@+id/nav_settings_app"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/app_settings" />
+        </menu>
+    </item>
+
+</menu>

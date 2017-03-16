@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import sport.tsse.com.sportapp.onboarding.register.RegisterActivity
+import sport.tsse.com.sportapp.onboarding.startUp.StartupActivity
 
 /**
  * tsse-sportapp-android

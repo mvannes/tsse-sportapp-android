@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp
+package sport.tsse.com.sportapp.onboarding.startUp
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_startup.*
+import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.onboarding.login.LoginActivity
 import sport.tsse.com.sportapp.onboarding.register.RegisterActivity
 
@@ -23,7 +24,7 @@ class StartupFragment : Fragment() {
             startActivity(Intent(activity, RegisterActivity::class.java))
         }
 
-        LoginButton.setOnClickListener {
+        loginButton.setOnClickListener {
             startActivity(Intent(activity, LoginActivity::class.java))
         }
     }

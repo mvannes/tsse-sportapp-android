@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp
+package sport.tsse.com.sportapp.onboarding.startUp
 
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar

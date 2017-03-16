@@ -9,11 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StartupActivity"
+            android:name=".onboarding.startUp.StartupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,22 +23,26 @@
         <activity
             android:name=".onboarding.register.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".StartupActivity"
+            android:parentActivityName=".onboarding.startUp.StartupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".onboarding.forgotPassword.ForgotPasswordActivity"
-            android:parentActivityName="sport.tsse.com.sportapp.onboarding.login.LoginActivity"
+            android:parentActivityName=".onboarding.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="sport.tsse.com.sportapp.onboarding.login.LoginActivity"
-            android:parentActivityName=".StartupActivity"
+            android:name=".onboarding.login.LoginActivity"
+            android:parentActivityName=".onboarding.startUp.StartupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".exercise.ExerciseDetailActivity"
+            android:name=".SingleFragmentNavigationActivity"
+            android:label="@string/home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".exercise.detail.ExerciseDetailActivity"
             android:label="Detail"
-            android:parentActivityName=".StartupActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:parentActivityName=".SingleFragmentNavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
