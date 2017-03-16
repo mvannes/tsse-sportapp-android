@@ -24,5 +24,7 @@
     <string name="instruction">Instruction</string>
     <string name="reps">Reps</string>
     <string name="kilos">Kilos</string>
+    <string name="my_schedules">My Schedules</string>
+    <string name="minus_seperator">-</string>
 
 </resources>
