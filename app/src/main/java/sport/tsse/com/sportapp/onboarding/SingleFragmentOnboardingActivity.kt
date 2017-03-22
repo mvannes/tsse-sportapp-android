@@ -26,12 +26,16 @@ abstract class SingleFragmentOnboardingActivity : AppCompatActivity() {
                     .commit()
         }
     }
-    
+
     private fun initActionBar() {
         setSupportActionBar(setToolbar())
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
+
+            setToolbar()?.setNavigationOnClickListener({
+                onBackPressed()
+            })
         }
     }
 }

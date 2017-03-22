@@ -26,5 +26,12 @@
     <string name="kilos">Kilos</string>
     <string name="my_schedules">My Schedules</string>
     <string name="minus_seperator">-</string>
+    <string name="onboarding_name_text">What\'s your name?</string>
+    <string name="onboarding_name_hint">\"John Cena\"</string>
+    <string name="onboarding_password_text">Create your account password</string>
+    <string name="onboarding_last_name_hint">Last</string>
+    <string name="onboarding_first_name_hint">First</string>
+    <string name="onboarding_date_picker_title">Wat\'s your birthdate</string>
+    <string name="onboarding_birthdate_text">What\'s your birthdate?</string>
 
 </resources>
