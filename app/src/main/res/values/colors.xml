@@ -8,5 +8,7 @@
     <color name="pink">#E7305E</color>
     <color name="white">#FFFFFF</color>
     <color name="grey">#EDEDED</color>
+    <color name="titleText">#3C3B3A</color>
+
 
 </resources>

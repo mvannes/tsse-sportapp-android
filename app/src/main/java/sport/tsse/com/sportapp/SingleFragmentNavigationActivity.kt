@@ -7,16 +7,17 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.fragment_exercise_detail.*
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
+import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
 
 class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_navigation)
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -24,9 +25,9 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
 
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        replaceFragment(HomeFragment())
 
         navView.setNavigationItemSelectedListener(this)
+        replaceFragment(HomeFragment())
     }
 
     override fun onBackPressed() {
@@ -47,24 +48,24 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
                 replaceTitle(getString(R.string.home))
             }
             R.id.nav_schedules -> {
-                // replaceFragment(ScheduleListFragment())
+                replaceFragment(ScheduleListFragment())
                 replaceTitle(getString(R.string.schedules))
             }
             R.id.nav_workouts -> {
-                // replaceFragment(WorkoutListFragment())
+//                replaceFragment(WorkoutListFragment())
                 replaceTitle(getString(R.string.workouts))
             }
-            R.id.nav_statistics -> {
+            R.id.nav_exercises -> {
                 replaceFragment(ExerciseListFragment())
+                replaceTitle(getString(R.string.exercises))
+            }
+            R.id.nav_statistics -> {
+//            replaceFragment(StatisticsFragment())
                 replaceTitle(getString(R.string.statistics))
             }
-            R.id.nav_settings_account -> {
-                // replaceFragment(AccountSettingsFragment())
-                replaceTitle(getString(R.string.account_settings))
-            }
-            R.id.nav_settings_app -> {
-                // replaceFragment(AppSettingsFragment())
-                replaceTitle(getString(R.string.app_settings))
+            R.id.nav_settings -> {
+//                replaceFragment(AccountSettingsFragment())
+                replaceTitle(getString(R.string.settings))
             }
         }
 

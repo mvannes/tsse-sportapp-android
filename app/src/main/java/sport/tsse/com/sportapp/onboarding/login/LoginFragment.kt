@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_login.*
-import sport.tsse.com.sportapp.SingleFragmentNavigationActivity
-import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
 import sport.tsse.com.sportapp.R
+import sport.tsse.com.sportapp.SingleFragmentNavigationActivity
 import sport.tsse.com.sportapp.onboarding.forgotPassword.ForgotPasswordActivity
 
 /**

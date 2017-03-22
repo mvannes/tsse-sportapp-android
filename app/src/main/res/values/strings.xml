@@ -38,5 +38,8 @@
     <string name="workouts">Workouts</string>
     <string name="schedules">Schedules</string>
     <string name="settings">Settings</string>
+    <string name="my_schedules">My Schedules</string>
+    <string name="minus_seperator">-</string>
+    <string name="exercises">Exercises</string>
 
 </resources>
