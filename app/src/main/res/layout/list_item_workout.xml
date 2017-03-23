@@ -27,13 +27,11 @@
             tools:text="@string/workout_name" />
 
         <TextView
-            android:id="@+id/info_text"
+            android:id="@+id/descriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:textAllCaps="true"
-            tools:text="Chest" />
-
+            tools:text="Workout description" />
     </LinearLayout>
 
     <ImageView
