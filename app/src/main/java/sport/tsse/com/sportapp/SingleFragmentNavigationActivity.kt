@@ -8,7 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_navigation.*
-import kotlinx.android.synthetic.main.fragment_exercise_detail.*
+import kotlinx.android.synthetic.main.app_bar_home.*
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
@@ -27,14 +27,15 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
-        replaceFragment(HomeFragment())
+        replaceFragment(HomeFragment(), getString(R.string.home))
+
+        navView.menu.getItem(0).isChecked = true
     }
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
         }
     }
 
@@ -44,28 +45,22 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
 
         when (id) {
             R.id.nav_home -> {
-                replaceFragment(HomeFragment())
-                replaceTitle(getString(R.string.home))
+                replaceFragment(HomeFragment(), getString(R.string.home))
             }
             R.id.nav_schedules -> {
-                replaceFragment(ScheduleListFragment())
-                replaceTitle(getString(R.string.schedules))
+                replaceFragment(ScheduleListFragment(), getString(R.string.schedules))
             }
             R.id.nav_workouts -> {
-//                replaceFragment(WorkoutListFragment())
-                replaceTitle(getString(R.string.workouts))
+//                replaceFragment(WorkoutListFragment(), getString(R.string.workouts))
             }
             R.id.nav_exercises -> {
-                replaceFragment(ExerciseListFragment())
-                replaceTitle(getString(R.string.exercises))
+                replaceFragment(ExerciseListFragment(), getString(R.string.exercises))
             }
             R.id.nav_statistics -> {
-//            replaceFragment(StatisticsFragment())
-                replaceTitle(getString(R.string.statistics))
+//            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
             }
             R.id.nav_settings -> {
-//                replaceFragment(AccountSettingsFragment())
-                replaceTitle(getString(R.string.settings))
+//                replaceFragment(AccountSettingsFragment(), getString(R.string.settings))
             }
         }
 
@@ -73,13 +68,11 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, title: String) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .commit()
-    }
 
-    private fun replaceTitle(title: String) {
         supportActionBar?.title = title
     }
 }

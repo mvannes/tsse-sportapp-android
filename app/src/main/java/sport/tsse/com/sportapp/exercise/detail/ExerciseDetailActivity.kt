@@ -16,5 +16,8 @@ class ExerciseDetailActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
+
+        toolbar.setNavigationOnClickListener { onBackPressed() }
     }
+
 }
