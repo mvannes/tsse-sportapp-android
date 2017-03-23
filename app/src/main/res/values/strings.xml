@@ -50,7 +50,10 @@
     <string name="onboarding_first_name_hint">First</string>
     <string name="onboarding_date_picker_title">Wat\'s your birthdate</string>
     <string name="onboarding_birthdate_text">What\'s your birthdate?</string>
+
     <string name="add_exercise">Add Exercise</string>
     <string name="choose_workout">Choose workout</string>
+    <string name="onboarding_password_hint">Password</string>
+
 
 </resources>
