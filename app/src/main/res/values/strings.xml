@@ -52,5 +52,10 @@
     <string name="onboarding_birthdate_text">What\'s your birthdate?</string>
     <string name="add_exercise">Add Exercise</string>
     <string name="choose_workout">Choose workout</string>
+    <string name="schedule_name">Schedule name</string>
+    <string name="length_in_weeks">Length in weeks (ex. 16)</string>
+    <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
+    <string name="schedule_description">Schedule description</string>
+    <string name="workout_name">Workout name</string>
 
 </resources>
