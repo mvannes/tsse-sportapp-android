@@ -14,7 +14,7 @@
         android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/bench_press" />
+        app:srcCompat="@drawable/ic_exercises_black" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -23,7 +23,9 @@
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@id/icon_image"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/icon_image">
 
         <TextView
             android:id="@+id/exerciseListItemTitleTextView"
@@ -33,7 +35,7 @@
             android:textAllCaps="true"
             android:textColor="#3C3B3A"
             android:textStyle="bold"
-            tools:text="Bench Press" />
+            tools:text="WORKOUT NAME" />
 
         <TextView
             android:id="@+id/exerciseListItemInfoTextView"
@@ -41,14 +43,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textAllCaps="true"
-            tools:text="Chest" />
+            tools:text="12-12-2017" />
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/beacon_action_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_check_box" />
+        android:src="@drawable/ic_arrow_right_small_black"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

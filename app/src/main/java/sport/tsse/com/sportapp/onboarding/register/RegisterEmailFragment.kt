@@ -21,10 +21,10 @@ class RegisterEmailFragment : Fragment() {
         fab.setOnClickListener({
             fragmentManager.beginTransaction()
                     .setCustomAnimations(
-                            R.anim.enter_from_right,
-                            R.anim.exit_to_left,
-                            R.anim.enter_from_left,
-                            R.anim.exit_to_right
+                            R.anim.enter_from_right_onboarding,
+                            R.anim.exit_to_left_onboarding,
+                            R.anim.enter_from_left_onboarding,
+                            R.anim.exit_to_right_onboarding
                     )
                     .replace(R.id.fragmentContainer, RegisterNameFragment())
                     .addToBackStack(null)

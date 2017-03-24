@@ -2,7 +2,7 @@ package sport.tsse.com.sportapp.onboarding.register
 
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import kotlinx.android.synthetic.main.activity_onboarding_fragment.*
+import kotlinx.android.synthetic.main.activity_onboarding.*
 import sport.tsse.com.sportapp.onboarding.SingleFragmentOnboardingActivity
 
 class RegisterActivity : SingleFragmentOnboardingActivity() {

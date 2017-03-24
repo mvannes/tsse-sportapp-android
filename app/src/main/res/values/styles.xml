@@ -24,7 +24,7 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
-    <style name="AppTheme.TextAppearance" parent="@style/TextAppearance.AppCompat"></style>
+    <style name="AppTheme.TextAppearance" parent="@style/TextAppearance.AppCompat" />
 
     <style name="AppTheme.TextAppearance.Title" parent="AppTheme.TextAppearance">
         <item name="android:fontFamily">sans-serif-light</item>

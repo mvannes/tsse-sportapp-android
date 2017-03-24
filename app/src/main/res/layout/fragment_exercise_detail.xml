@@ -94,7 +94,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_favorite" />
+                        android:src="@drawable/ic_favorite_grey" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -184,7 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -227,7 +227,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -257,7 +257,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -298,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -327,7 +327,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -341,7 +341,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -371,7 +371,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -412,7 +412,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -441,7 +441,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -455,7 +455,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_remove" />
+                            android:src="@drawable/ic_remove_black" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -485,7 +485,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add_black" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

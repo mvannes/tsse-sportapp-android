@@ -8,23 +8,23 @@
             android:title="@string/home" />
         <item
             android:id="@+id/nav_schedules"
-            android:icon="@drawable/ic_schedules"
+            android:icon="@drawable/ic_schedules_black"
             android:title="@string/schedules" />
         <item
             android:id="@+id/nav_workouts"
-            android:icon="@drawable/ic_workout"
+            android:icon="@drawable/ic_workout_black"
             android:title="@string/workouts" />
         <item
             android:id="@+id/nav_exercises"
-            android:icon="@drawable/ic_exercises"
+            android:icon="@drawable/ic_exercises_black"
             android:title="@string/exercises" />
         <item
             android:id="@+id/nav_statistics"
-            android:icon="@drawable/ic_statistics"
+            android:icon="@drawable/ic_statistics_black"
             android:title="@string/statistics" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/ic_settings_black"
             android:title="@string/settings" />
     </group>
 

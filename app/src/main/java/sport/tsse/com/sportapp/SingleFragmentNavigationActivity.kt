@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_navigation.*
-import kotlinx.android.synthetic.main.app_bar_home.*
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment

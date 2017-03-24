@@ -14,7 +14,7 @@ abstract class SingleFragmentOnboardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_onboarding_fragment)
+        setContentView(R.layout.activity_onboarding)
         initActionBar()
 
         var fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)

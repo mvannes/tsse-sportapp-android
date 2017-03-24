@@ -43,6 +43,14 @@
             android:label="Detail"
             android:parentActivityName=".SingleFragmentNavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".schedule.add.ScheduleCreationActivity"
+            android:label="Add Schedule"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".workout.WorkoutCreationActivtity"
+            android:label="Add Workout"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
