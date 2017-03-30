@@ -77,7 +77,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/accent"
+            android:background="@color/colorAccent"
             android:text="@string/add_exercise"
             android:layout_marginTop="16dp"
             android:textColor="@color/white" />

@@ -7,18 +7,24 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_exercise_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
-import java.util.*
+import sport.tsse.com.sportapp.network.Api
 
 /**
  * tsse-sportapp-android
  *
  * @author Mitchell de Vries
  */
-class ExerciseListFragment : Fragment() {
+class ExerciseListFragment : Fragment(), Callback<List<Exercise>> {
+
+    private var exercises: List<Exercise> = emptyList()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_exercise_list, container, false)
@@ -27,11 +33,14 @@ class ExerciseListFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val exercises: ArrayList<Exercise> = ArrayList()
+        val api = Api()
+        api.service.getAllExercises().enqueue(this)
+        updateUi()
+    }
 
-        for (i in 1..100) exercises.add(Exercise("Exercise " + i, "Muscle Group"))
 
-        if (exercises.size != 0) {
+    private fun updateUi() {
+        if (exercises.isNotEmpty()) {
             exerciseListEmptyTextView.visibility = View.GONE
         } else {
             exerciseListEmptyTextView.visibility = View.VISIBLE
@@ -40,11 +49,21 @@ class ExerciseListFragment : Fragment() {
         exerciseListRecyclerView.apply {
             setHasFixedSize(true)
             val linearLayoutManager = LinearLayoutManager(context)
-//            addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
             layoutManager = linearLayoutManager
             adapter = ExerciseAdapter(exercises) {
                 startActivity(Intent(context, ExerciseDetailActivity::class.java))
             }
         }
+    }
+
+    override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
+        if (response!!.isSuccessful) {
+            exercises = response.body()
+            updateUi()
+        }
+    }
+
+    override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
+        Toast.makeText(context, t?.message, Toast.LENGTH_LONG).show()
     }
 }

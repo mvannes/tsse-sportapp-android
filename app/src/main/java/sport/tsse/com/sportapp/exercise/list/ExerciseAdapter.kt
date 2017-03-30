@@ -31,7 +31,7 @@ class ExerciseAdapter(val exercises: List<Exercise>,
     class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(exercise: Exercise, listener: (Exercise) -> Unit) = with(itemView) {
             exerciseListItemTitleTextView.text = exercise.name
-            exerciseListItemInfoTextView.text = exercise.muscleGroup
+            exerciseListItemInfoTextView.text = exercise.category
             setOnClickListener { listener(exercise) }
         }
     }
