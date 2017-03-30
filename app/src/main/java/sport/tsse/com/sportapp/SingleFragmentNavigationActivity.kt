@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
+import sport.tsse.com.sportapp.schedule.list.ScheduleListPresenter
 
 class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,7 +48,9 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
                 replaceFragment(HomeFragment(), getString(R.string.home))
             }
             R.id.nav_schedules -> {
-                replaceFragment(ScheduleListFragment(), getString(R.string.schedules))
+                var fragment: ScheduleListFragment = ScheduleListFragment()
+                ScheduleListPresenter(fragment)
+                replaceFragment(fragment, getString(R.string.schedules))
             }
             R.id.nav_workouts -> {
 //                replaceFragment(WorkoutListFragment(), getString(R.string.workouts))
