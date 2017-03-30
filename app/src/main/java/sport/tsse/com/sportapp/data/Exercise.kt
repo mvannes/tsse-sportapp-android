@@ -5,4 +5,4 @@ package sport.tsse.com.sportapp.data
  *
  * @author Mitchell de Vries
  */
-data class Exercise(val id: Int, val name: String, val category: String, val description: String)
+data class Exercise(val id: Int, val name: String, val description: String, val category: String)

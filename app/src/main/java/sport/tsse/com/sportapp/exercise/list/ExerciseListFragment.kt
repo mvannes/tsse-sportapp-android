@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import retrofit2.Response
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
-import sport.tsse.com.sportapp.network.GymApi
+import sport.tsse.com.sportapp.network.Api
 
 /**
  * tsse-sportapp-android
@@ -34,7 +33,7 @@ class ExerciseListFragment : Fragment(), Callback<List<Exercise>> {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val api = GymApi()
+        val api = Api()
         api.service.getAllExercises().enqueue(this)
         updateUi()
     }
@@ -61,12 +60,10 @@ class ExerciseListFragment : Fragment(), Callback<List<Exercise>> {
         if (response!!.isSuccessful) {
             exercises = response.body()
             updateUi()
-            Log.d("onResponse: ", response.raw().toString())
         }
     }
 
     override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
         Toast.makeText(context, t?.message, Toast.LENGTH_LONG).show()
-        Log.e("TAG", "onFailure", t)
     }
 }

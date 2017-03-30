@@ -8,9 +8,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  *
  * @author Mitchell de Vries
  */
-class GymApi {
+class Api {
 
-    val service: GymService
+    val service: ApiService
 
     init {
         val retrofit = Retrofit.Builder()
@@ -18,6 +18,6 @@ class GymApi {
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
-        service = retrofit.create(GymService::class.java)
+        service = retrofit.create(ApiService::class.java)
     }
 }

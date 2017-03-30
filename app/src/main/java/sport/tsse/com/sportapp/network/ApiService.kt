@@ -9,7 +9,7 @@ import sport.tsse.com.sportapp.data.Exercise
  *
  * @author Mitchell de Vries
  */
-interface GymService {
+interface ApiService {
 
     @GET("exercises")
     fun getAllExercises(): Call<List<Exercise>>
