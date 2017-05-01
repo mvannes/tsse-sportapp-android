@@ -23,7 +23,7 @@ import sport.tsse.com.sportapp.schedule.add.ScheduleCreationActivity
  *
  * @author Mitchell de Vries
  */
-class ScheduleListFragment : Fragment(), ViewInterface {
+class ScheduleListFragment : Fragment(), ScheduleListViewInterface {
     lateinit private var presenter: PresenterInterface
 
     override fun setPresenter(presenter: PresenterInterface) {
@@ -48,7 +48,7 @@ class ScheduleListFragment : Fragment(), ViewInterface {
         presenter.start()
     }
 
-     fun populateView(schedules: List<PersonalSchedule>){
+     override fun populateView(schedules: List<Schedule>){
         scheduleList.adapter = ScheduleAdapter(schedules) {
             startActivity(Intent(context, HomeFragment::class.java)) // TODO: Link this to a real fragment.
         }
