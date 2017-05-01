@@ -14,12 +14,12 @@ import java.text.DateFormat
 import java.util.*
 
 /**
- * tsse-sportapp-android
+ * Adapter for showing a list of Schedules.
  *
  * @author Michael van Nes
  */
-class ScheduleAdapter(val schedules: List<PersonalSchedule>,
-                      val listener: (PersonalSchedule) -> Unit) : RecyclerView.Adapter<ScheduleViewHolder>() {
+class ScheduleAdapter(val schedules: List<Schedule>,
+                      val listener: (Schedule) -> Unit) : RecyclerView.Adapter<ScheduleViewHolder>() {
 
     override fun onBindViewHolder(holder: ScheduleViewHolder?, position: Int) {
         holder?.bind(schedules[position], listener)
@@ -33,15 +33,15 @@ class ScheduleAdapter(val schedules: List<PersonalSchedule>,
     override fun getItemCount() = schedules.size
 
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(schedule: PersonalSchedule, listener: (PersonalSchedule) -> Unit) = with(itemView) {
+        fun bind(schedule: Schedule, listener: (Schedule) -> Unit) = with(itemView) {
             val formatter: DateFormat = DateFormat.getDateInstance()
 
-            scheduleNameTextView.text = schedule.schedule.name
-            startDateTextView.text    = formatter.format(schedule.startDate)
-            endDateTextView.text      = formatter.format(schedule.endDate)
+            scheduleNameTextView.text = schedule.name
+            startDateTextView.text    = formatter.format(Date()) // Give a Schedule a start date.
+            endDateTextView.text      = formatter.format(Date()) // Give a Schedule an end date
             // If our schedule's end date in the past, it is old and must be displayed as such.
-            if (schedule.endDate.before(Date())) {
-                itemView.setBackgroundColor(R.color.grey)
+            if (false) { // This will be usefull once we move to using Personal schedules.
+                 itemView.setBackgroundColor(R.color.grey)
                 itemView.alpha = 25F
             }
             setOnClickListener { listener(schedule) }
