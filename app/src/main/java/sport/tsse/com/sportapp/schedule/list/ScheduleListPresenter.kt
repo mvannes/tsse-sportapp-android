@@ -28,7 +28,6 @@ class ScheduleListPresenter(private val view: ScheduleListViewInterface):
 
     override fun onResponse(call: Call<List<Schedule>>?, response: Response<List<Schedule>>?) {
         if (response!!.isSuccessful) {
-            Toast.makeText(view.getContext(), "het werkt", Toast.LENGTH_LONG).show()
             var schedules = response.body()
             view.populateView(schedules)
         }
