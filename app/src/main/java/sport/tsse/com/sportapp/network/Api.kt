@@ -14,9 +14,10 @@ class Api {
 
     init {
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://145.28.226.144:8080/api/")
+                .baseUrl("http://192.168.2.14:8080/api/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
+
 
         service = retrofit.create(ApiService::class.java)
     }
