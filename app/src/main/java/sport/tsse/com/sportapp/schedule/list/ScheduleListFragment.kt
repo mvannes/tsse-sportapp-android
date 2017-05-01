@@ -50,7 +50,7 @@ class ScheduleListFragment : Fragment(), ScheduleListViewInterface {
 
      override fun populateView(schedules: List<Schedule>){
         scheduleList.adapter = ScheduleAdapter(schedules) {
-            startActivity(Intent(context, HomeFragment::class.java)) // TODO: Link this to a real fragment.
+            startActivity(Intent(context, HomeFragment::class.java))
         }
     }
 }

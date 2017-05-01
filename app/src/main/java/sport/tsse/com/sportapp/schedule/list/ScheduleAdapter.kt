@@ -42,7 +42,7 @@ class ScheduleAdapter(val schedules: List<Schedule>,
             // If our schedule's end date in the past, it is old and must be displayed as such.
             if (false) { // This will be usefull once we move to using Personal schedules.
                  itemView.setBackgroundColor(R.color.grey)
-                itemView.alpha = 25F
+                 itemView.alpha = 25F
             }
             setOnClickListener { listener(schedule) }
         }
