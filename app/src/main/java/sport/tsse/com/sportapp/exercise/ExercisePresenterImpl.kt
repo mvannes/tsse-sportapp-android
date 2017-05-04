@@ -1,34 +1,45 @@
 package sport.tsse.com.sportapp.exercise
 
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import sport.tsse.com.sportapp.data.Exercise
+import sport.tsse.com.sportapp.network.Api
 
 /**
  * tsse-sportapp-android
  *
  * @author Mitchell de Vries
  */
-class ExercisePresenterImpl(val view: ExerciseView) : ExercisePresenter {
-    override fun finish() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class ExercisePresenterImpl(val view: ExerciseView, val api: Api) : ExercisePresenter, Callback<List<Exercise>> {
 
     override fun loadExercises() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.showProgress()
+        api.service.getAllExercises().enqueue(this)
     }
 
     override fun onExerciseClicked(exercise: Exercise) {
         view.showExercise(exercise)
     }
 
-    fun
-    fun onSuccess(exercises: List<Exercise>) {
+    private fun onSuccess(exercises: List<Exercise>) {
         view.hideProgress()
         view.setExercises(exercises)
     }
 
-    fun onFailure(t: Throwable) {
+    private fun onFailure(t: Throwable) {
         view.hideProgress()
         view.showError(t.message!!)
+    }
+
+    override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
+        if (response?.isSuccessful!!) {
+            onSuccess(response.body())
+        }
+    }
+
+    override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
+        onFailure(t!!)
     }
 
 }

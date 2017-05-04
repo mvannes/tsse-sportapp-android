@@ -9,8 +9,6 @@ import sport.tsse.com.sportapp.data.Exercise
  */
 interface ExercisePresenter {
 
-    fun finish()
-
     fun loadExercises()
 
     fun onExerciseClicked(exercise: Exercise)

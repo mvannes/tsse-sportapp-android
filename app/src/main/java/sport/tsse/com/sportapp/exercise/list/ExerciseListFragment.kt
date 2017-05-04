@@ -3,17 +3,18 @@ package sport.tsse.com.sportapp.exercise.list
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_exercise_list.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
+import sport.tsse.com.sportapp.exercise.ExercisePresenter
+import sport.tsse.com.sportapp.exercise.ExercisePresenterImpl
+import sport.tsse.com.sportapp.exercise.ExerciseView
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
 import sport.tsse.com.sportapp.network.Api
 
@@ -22,30 +23,30 @@ import sport.tsse.com.sportapp.network.Api
  *
  * @author Mitchell de Vries
  */
-class ExerciseListFragment : Fragment(), Callback<List<Exercise>> {
+class ExerciseListFragment : Fragment(), ExerciseView {
 
-    private var exercises: List<Exercise> = emptyList()
+    private lateinit var presenter: ExercisePresenter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_exercise_list, container, false)
+    override fun showProgress() {
+        exerciseListProgress.visibility = View.VISIBLE
+        exerciseListRecyclerView.visibility = View.GONE
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val api = Api()
-        api.service.getAllExercises().enqueue(this)
-        updateUi()
+    override fun hideProgress() {
+        exerciseListProgress.visibility = View.GONE
+        exerciseListRecyclerView.visibility = View.VISIBLE
     }
 
+    override fun showError(errorMessage: String) {
+        AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton(android.R.string.ok, null)
+                .create()
+                .show()
+    }
 
-    private fun updateUi() {
-        if (exercises.isNotEmpty()) {
-            exerciseListEmptyTextView.visibility = View.GONE
-        } else {
-            exerciseListEmptyTextView.visibility = View.VISIBLE
-        }
-
+    override fun setExercises(exercises: List<Exercise>) {
         exerciseListRecyclerView.apply {
             setHasFixedSize(true)
             val linearLayoutManager = LinearLayoutManager(context)
@@ -56,14 +57,20 @@ class ExerciseListFragment : Fragment(), Callback<List<Exercise>> {
         }
     }
 
-    override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
-        if (response!!.isSuccessful) {
-            exercises = response.body()
-            updateUi()
-        }
+    override fun showExercise(exercise: Exercise) {
+        val intent = Intent(context, ExerciseDetailActivity::class.java)
+        intent.putExtra("exercise", exercise)
+        startActivity(intent)
     }
 
-    override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
-        Toast.makeText(context, t?.message, Toast.LENGTH_LONG).show()
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.fragment_exercise_list, container, false)
     }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter = ExercisePresenterImpl(this, Api())
+        presenter.loadExercises()
+    }
+
 }

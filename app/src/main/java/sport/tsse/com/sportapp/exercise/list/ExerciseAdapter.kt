@@ -14,7 +14,7 @@ import sport.tsse.com.sportapp.exercise.list.ExerciseAdapter.ExerciseViewHolder
  *
  * @author Mitchell de Vries
  */
-class ExerciseAdapter(val exercises: List<Exercise>,
+class ExerciseAdapter(var exercises: List<Exercise>,
                       val listener: (Exercise) -> Unit) : RecyclerView.Adapter<ExerciseViewHolder>() {
 
     override fun onBindViewHolder(holder: ExerciseViewHolder?, position: Int) {
