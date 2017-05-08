@@ -1,8 +1,5 @@
-package com.boydhogerheijde.android.weather.ui
+package sport.tsse.com.sportapp.onboarding.register
 
-/**
- * @author Boyd Hogerheijde.
- */
 interface BaseView<in T : BasePresenter> {
 
     fun setPresenter(presenter: T)

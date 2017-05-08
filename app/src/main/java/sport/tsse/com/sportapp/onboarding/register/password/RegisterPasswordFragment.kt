@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp.onboarding.register
+package sport.tsse.com.sportapp.onboarding.register.password
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar

@@ -1,12 +1,14 @@
-package sport.tsse.com.sportapp.onboarding.register.email
+package sport.tsse.com.sportapp.onboarding.register.birthdate
 
-import sport.tsse.com.sportapp.onboarding.register.email.RegisterEmailContract
 
 /**
  * Created by mohammedali on 30/03/2017.
  */
-class RegisterEmailPresenter(private val registerEmailView: RegisterEmailContract.View): RegisterEmailContract.Presenter {
+class RegisterBirthdatePresenter(private val registerBirthdateView: RegisterBirthdateContract.View): RegisterBirthdateContract.Presenter {
 
+    init {
+        registerBirthdateView.setPresenter(this)
+    }
     override fun start() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

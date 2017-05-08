@@ -1,26 +1,13 @@
-package sport.tsse.com.sportapp.onboarding.register
+package sport.tsse.com.sportapp.onboarding.register.email
 
-import sport.tsse.com.sportapp.onboarding.register.RegisterContract
 
 /**
  * Created by mohammedali on 30/03/2017.
  */
-class RegisterPresenter(private val registerView: RegisterContract.View): RegisterContract.Presenter {
+class RegisterEmailPresenter(private val registerEmailView: RegisterEmailContract.View): RegisterEmailContract.Presenter {
 
-    override fun gotoEmailFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun gotoBirthdateFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun gotoPasswordFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun gotoNameFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    init {
+        registerEmailView.setPresenter(this)
     }
 
     override fun start() {

@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp.onboarding.register.email
+package sport.tsse.com.sportapp.onboarding.register.name
 
 import sport.tsse.com.sportapp.onboarding.register.BasePresenter
 import sport.tsse.com.sportapp.onboarding.register.BaseView
@@ -7,7 +7,7 @@ import sport.tsse.com.sportapp.onboarding.register.BaseView
 /**
  * Created by mohammedali on 30/03/2017.
  */
-interface RegisterEmailContract {
+interface RegisterNameContract {
 
     interface View: BaseView<Presenter>
 
