@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.exercise.ExercisePresenter
-import sport.tsse.com.sportapp.exercise.ExercisePresenterImpl
 import sport.tsse.com.sportapp.exercise.ExerciseView
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
 import sport.tsse.com.sportapp.network.Api
@@ -69,7 +68,7 @@ class ExerciseListFragment : Fragment(), ExerciseView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = ExercisePresenterImpl(this, Api())
+        presenter = ExercisePresenter(this, Api())
         presenter.loadExercises()
     }
 
