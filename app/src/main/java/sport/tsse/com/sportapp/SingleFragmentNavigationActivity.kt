@@ -48,9 +48,7 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
                 replaceFragment(HomeFragment(), getString(R.string.home))
             }
             R.id.nav_schedules -> {
-                var fragment: ScheduleListFragment = ScheduleListFragment()
-                ScheduleListPresenter(fragment)
-                replaceFragment(fragment, getString(R.string.schedules))
+                replaceFragment(ScheduleListFragment(), getString(R.string.schedules))
             }
             R.id.nav_workouts -> {
 //                replaceFragment(WorkoutListFragment(), getString(R.string.workouts))
