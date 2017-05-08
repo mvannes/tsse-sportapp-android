@@ -5,7 +5,7 @@ import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sport.tsse.com.sportapp.PresenterInterface
+import sport.tsse.com.sportapp.Presenter
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.network.Api
 
@@ -14,12 +14,8 @@ import sport.tsse.com.sportapp.network.Api
  *
  * Created by Michael on 30/03/2017.
  */
-class ScheduleListPresenter(private val view: ScheduleListViewInterface):
-        PresenterInterface, Callback<List<Schedule>> {
-    val api: Api                  = Api()
-    init {
-        view.setPresenter(this)
-    }
+class ScheduleListPresenter(private val view: ScheduleListView, private val api: Api):
+        Presenter, Callback<List<Schedule>> {
 
     override fun start() {
         view.populateView(emptyList())
