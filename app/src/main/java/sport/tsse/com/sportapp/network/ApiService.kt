@@ -3,6 +3,7 @@ package sport.tsse.com.sportapp.network
 import retrofit2.Call
 import retrofit2.http.GET
 import sport.tsse.com.sportapp.data.Exercise
+import sport.tsse.com.sportapp.data.Schedule
 
 /**
  * tsse-sportapp-android
@@ -16,4 +17,7 @@ interface ApiService {
 
     @GET("exercises/{id}")
     fun getOneExercise(): Exercise
+
+    @GET("schedule")
+    fun getAllSchedules(): Call<List<Schedule>>
 }
