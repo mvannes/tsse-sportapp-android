@@ -3,6 +3,7 @@ package sport.tsse.com.sportapp.exercise
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import sport.tsse.com.sportapp.Presenter
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.network.Api
 
@@ -11,9 +12,9 @@ import sport.tsse.com.sportapp.network.Api
  *
  * @author Mitchell de Vries
  */
-class ExercisePresenter(val view: ExerciseView, val api: Api): Callback<List<Exercise>> {
+class ExercisePresenter(val view: ExerciseView, val api: Api): Presenter,  Callback<List<Exercise>> {
 
-    fun loadExercises() {
+    override fun start() {
         view.showProgress()
         api.service.getAllExercises().enqueue(this)
     }

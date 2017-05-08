@@ -69,7 +69,7 @@ class ExerciseListFragment : Fragment(), ExerciseView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = ExercisePresenter(this, Api())
-        presenter.loadExercises()
+        presenter.start()
     }
 
 }
