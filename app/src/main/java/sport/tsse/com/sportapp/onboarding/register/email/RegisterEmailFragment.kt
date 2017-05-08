@@ -10,13 +10,9 @@ import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.onboarding.register.name.RegisterNameFragment
 
 
-class RegisterEmailFragment : Fragment(), RegisterEmailContract.View {
+class RegisterEmailFragment : Fragment(), RegisterEmailView {
 
-    lateinit private var presenter: RegisterEmailContract.Presenter
-
-    override fun setPresenter(presenter: RegisterEmailContract.Presenter) {
-        this.presenter = presenter
-    }
+    lateinit private var presenter: RegisterEmailPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_onboarding_email_input, container, false)
@@ -24,7 +20,12 @@ class RegisterEmailFragment : Fragment(), RegisterEmailContract.View {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter = RegisterEmailPresenter(this)
+        presenter.start()
 
+    }
+
+    override fun goToRegisterNameFragment() {
         fab.setOnClickListener({
             fragmentManager.beginTransaction()
                     .setCustomAnimations(

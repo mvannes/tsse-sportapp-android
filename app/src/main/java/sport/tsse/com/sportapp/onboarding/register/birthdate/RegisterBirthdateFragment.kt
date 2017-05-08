@@ -14,7 +14,9 @@ import sport.tsse.com.sportapp.onboarding.register.password.RegisterPasswordFrag
  * Created by mohammedali on 09/03/2017.
  */
 
-class RegisterBirthDateFragment : Fragment() {
+class RegisterBirthdateFragment : Fragment(), RegisterBirthdateView {
+
+    lateinit private var presenter: RegisterBirthdatePresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_onboarding_birth_date_input, container, false)
@@ -22,7 +24,11 @@ class RegisterBirthDateFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter = RegisterBirthdatePresenter(this)
+        presenter.start()
+    }
 
+    override fun gotoRegisterPasswordFragment() {
         fab.setOnClickListener({
             fragmentManager.beginTransaction()
                     .setCustomAnimations(

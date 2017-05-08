@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.onboarding_fab.*
 import sport.tsse.com.sportapp.R
-import sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthDateFragment
+import sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthdateFragment
 
 
 /**
  * Created by mohammedali on 09/03/2017.
  */
 
-class RegisterNameFragment : Fragment() {
+class RegisterNameFragment : Fragment(), RegisterNameView {
+
+    lateinit private var presenter: RegisterNamePresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_onboarding_name_input, container, false)
@@ -22,7 +24,11 @@ class RegisterNameFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter = RegisterNamePresenter(this)
+        presenter.start()
+    }
 
+    override fun goToRegisterBirthdateFragment() {
         fab.setOnClickListener({
             fragmentManager.beginTransaction()
                     .setCustomAnimations(
@@ -31,7 +37,7 @@ class RegisterNameFragment : Fragment() {
                             R.anim.enter_from_left_onboarding,
                             R.anim.exit_to_right_onboarding
                     )
-                    .replace(R.id.fragmentContainer, RegisterBirthDateFragment())
+                    .replace(R.id.fragmentContainer, RegisterBirthdateFragment())
                     .addToBackStack(null)
                     .commit()
         })

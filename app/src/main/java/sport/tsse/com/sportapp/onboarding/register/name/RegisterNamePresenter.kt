@@ -1,16 +1,16 @@
 package sport.tsse.com.sportapp.onboarding.register.name
 
+import sport.tsse.com.sportapp.Presenter
+
 
 /**
  * Created by mohammedali on 30/03/2017.
  */
-class RegisterNamePresenter(private val registerNameView: RegisterNameContract.View): RegisterNameContract.Presenter {
+class RegisterNamePresenter(private val registerNameView: RegisterNameView) : Presenter {
 
-    init {
-        registerNameView.setPresenter(this)
-    }
     override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        registerNameView.goToRegisterBirthdateFragment()
     }
 
 }

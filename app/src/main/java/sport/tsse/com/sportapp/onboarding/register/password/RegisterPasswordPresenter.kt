@@ -1,17 +1,15 @@
 package sport.tsse.com.sportapp.onboarding.register.password
 
+import sport.tsse.com.sportapp.Presenter
+
 
 /**
  * Created by mohammedali on 30/03/2017.
  */
-class RegisterPasswordPresenter(private val registerPasswordView: RegisterPasswordContract.View) : RegisterPasswordContract.Presenter {
-
-    init {
-        registerPasswordView.setPresenter(this)
-    }
+class RegisterPasswordPresenter(private val registerPasswordView: RegisterPasswordView) : Presenter {
 
     override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        registerPasswordView.finishRegistration()
     }
 
 }

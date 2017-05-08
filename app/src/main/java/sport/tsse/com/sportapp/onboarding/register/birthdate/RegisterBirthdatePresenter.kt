@@ -1,16 +1,14 @@
 package sport.tsse.com.sportapp.onboarding.register.birthdate
 
+import sport.tsse.com.sportapp.Presenter
+
 
 /**
  * Created by mohammedali on 30/03/2017.
  */
-class RegisterBirthdatePresenter(private val registerBirthdateView: RegisterBirthdateContract.View): RegisterBirthdateContract.Presenter {
+class RegisterBirthdatePresenter(private val registerBirthdateView: RegisterBirthdateView) : Presenter {
 
-    init {
-        registerBirthdateView.setPresenter(this)
-    }
     override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        registerBirthdateView.gotoRegisterPasswordFragment()
     }
-
 }
