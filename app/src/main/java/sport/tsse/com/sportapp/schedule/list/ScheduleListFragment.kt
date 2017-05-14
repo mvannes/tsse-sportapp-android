@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_schedule_list.*
-import sport.tsse.com.sportapp.Presenter
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.home.HomeFragment
@@ -21,7 +20,19 @@ import sport.tsse.com.sportapp.schedule.add.ScheduleCreationActivity
  * @author Mitchell de Vries
  */
 class ScheduleListFragment : Fragment(), ScheduleListView {
-    private lateinit var presenter: Presenter
+    override fun showProgress() {
+        TODO("not implemented")
+    }
+
+    override fun hideProgress() {
+        TODO("not implemented")
+    }
+
+    override fun showError(errorMessage: String) {
+        TODO("not implemented")
+    }
+
+    private lateinit var presenter: ScheduleListPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_schedule_list, container, false)
@@ -42,8 +53,8 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         presenter.start()
     }
 
-     override fun populateView(schedules: List<Schedule>){
-        scheduleList.adapter = ScheduleAdapter(schedules) {
+     override fun populateView(items: List<Schedule>){
+        scheduleList.adapter = ScheduleAdapter(items) {
             startActivity(Intent(context, HomeFragment::class.java))
         }
     }

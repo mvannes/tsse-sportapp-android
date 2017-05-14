@@ -1,21 +1,27 @@
 package sport.tsse.com.sportapp.schedule.list
 
-import android.content.Context
 import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sport.tsse.com.sportapp.Presenter
+import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.network.Api
 
 /**
- * Presenter for ScheduleList view.
+ * BasePresenter for ScheduleList view.
  *
  * Created by Michael on 30/03/2017.
  */
 class ScheduleListPresenter(private val view: ScheduleListView, private val api: Api):
-        Presenter, Callback<List<Schedule>> {
+        BasePresenter<Schedule>, Callback<List<Schedule>> {
+
+    override fun onSuccess(items: List<Schedule>) {
+        view.populateView(items)    }
+
+    override fun onFailure(t: Throwable) {
+        Toast.makeText(view.getContext(), t.message, Toast.LENGTH_LONG).show()
+    }
 
     override fun start() {
         view.populateView(emptyList())
@@ -24,12 +30,11 @@ class ScheduleListPresenter(private val view: ScheduleListView, private val api:
 
     override fun onResponse(call: Call<List<Schedule>>?, response: Response<List<Schedule>>?) {
         if (response!!.isSuccessful) {
-            var schedules = response.body()
-            view.populateView(schedules)
+            onSuccess(response.body())
         }
     }
 
     override fun onFailure(call: Call<List<Schedule>>?, t: Throwable?) {
-        Toast.makeText(view.getContext(), t?.message, Toast.LENGTH_LONG).show()
+        onFailure(t!!)
     }
 }
