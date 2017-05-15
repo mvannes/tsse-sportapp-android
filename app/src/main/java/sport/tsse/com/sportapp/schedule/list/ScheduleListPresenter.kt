@@ -17,6 +17,7 @@ class ScheduleListPresenter(private val view: ScheduleListView, private val api:
         BasePresenter, Callback<List<Schedule>> {
     override fun start() {
         view.populateView(emptyList())
+        view.showProgress()
         api.service.getAllSchedules().enqueue(this)
     }
 
@@ -24,10 +25,12 @@ class ScheduleListPresenter(private val view: ScheduleListView, private val api:
         if (response!!.isSuccessful) {
             val schedules = response.body()
             view.populateView(schedules)
+            view.hideProgress()
         }
     }
 
     override fun onFailure(call: Call<List<Schedule>>?, t: Throwable?) {
-        Toast.makeText(view.getContext(), t?.message, Toast.LENGTH_LONG).show()
+        view.hideProgress()
+        view.showError(t?.message!!)
     }
 }
