@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_exercise.view.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
-import sport.tsse.com.sportapp.exercise.list.ExerciseAdapter.ExerciseViewHolder
+import sport.tsse.com.sportapp.exercise.list.ExerciseListAdapter.ExerciseViewHolder
 
 /**
  * tsse-sportapp-android
  *
  * @author Mitchell de Vries
  */
-class ExerciseAdapter(val exercises: List<Exercise>,
-                      val listener: (Exercise) -> Unit) : RecyclerView.Adapter<ExerciseViewHolder>() {
+class ExerciseListAdapter(val exercises: List<Exercise>,
+                          val listener: (Exercise) -> Unit) : RecyclerView.Adapter<ExerciseViewHolder>() {
 
     override fun onBindViewHolder(holder: ExerciseViewHolder?, position: Int) {
         holder?.bind(exercises[position], listener)

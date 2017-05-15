@@ -56,7 +56,10 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
             R.id.nav_exercises -> {
                 replaceFragment(ExerciseListFragment(), getString(R.string.exercises))
             }
-            R.id.nav_statistics -> {
+            R.id.nav_chat -> {
+//            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
+            }
+            R.id.nav_buddies -> {
 //            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
             }
             R.id.nav_settings -> {
