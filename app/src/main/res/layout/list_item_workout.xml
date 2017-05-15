@@ -27,7 +27,7 @@
             tools:text="@string/workout_name" />
 
         <TextView
-            android:id="@+id/descriptionTextView"
+            android:id="@+id/workoutDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
