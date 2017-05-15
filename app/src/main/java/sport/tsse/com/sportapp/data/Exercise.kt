@@ -7,4 +7,7 @@ import java.io.Serializable
  *
  * @author Mitchell de Vries
  */
-data class Exercise(val id: Int, val name: String, val description: String, val category: String): Serializable
+data class Exercise(val id: Int,
+                    val name: String,
+                    val description: String,
+                    val category: String) : Serializable

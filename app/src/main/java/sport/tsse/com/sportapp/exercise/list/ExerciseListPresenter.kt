@@ -1,9 +1,10 @@
-package sport.tsse.com.sportapp.exercise
+package sport.tsse.com.sportapp.exercise.list
 
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sport.tsse.com.sportapp.Presenter
+import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.network.Api
 
@@ -12,35 +13,37 @@ import sport.tsse.com.sportapp.network.Api
  *
  * @author Mitchell de Vries
  */
-class ExercisePresenter(val view: ExerciseView, val api: Api): Presenter,  Callback<List<Exercise>> {
+class ExerciseListPresenter(val view: ExerciseListView,
+                            val api: Api): BasePresenter, Callback<List<Exercise>> {
+
+    private val TAG = "ExerciseListPresenter";
 
     override fun start() {
         view.showProgress()
         api.service.getAllExercises().enqueue(this)
     }
 
-    fun onExerciseClicked(exercise: Exercise) {
-        view.showExercise(exercise)
-    }
-
-    private fun onSuccess(exercises: List<Exercise>) {
+    fun onSuccess(exercises: List<Exercise>) {
         view.hideProgress()
-        view.setExercises(exercises)
+        view.populateView(exercises)
     }
 
-    private fun onFailure(t: Throwable) {
+    fun onFailure(t: Throwable) {
         view.hideProgress()
         view.showError(t.message!!)
     }
 
     override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
         if (response?.isSuccessful!!) {
-            onSuccess(response.body())
+            val exercises = response.body()
+            onSuccess(exercises)
+            Log.d(TAG, "onResponse: " + exercises.toString())
         }
     }
 
     override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
         onFailure(t!!)
+        Log.e(TAG, "onFailure: " + t)
     }
 
 }
