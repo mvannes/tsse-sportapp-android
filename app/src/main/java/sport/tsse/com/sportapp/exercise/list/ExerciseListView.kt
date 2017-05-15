@@ -8,4 +8,8 @@ import sport.tsse.com.sportapp.data.Exercise
  *
  * @author Mitchell de Vries
  */
-interface ExerciseListView : BaseView<Exercise>
+interface ExerciseListView : BaseView {
+
+   fun populateView(exercises: List<Exercise>)
+
+}

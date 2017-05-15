@@ -14,7 +14,7 @@ import sport.tsse.com.sportapp.network.Api
  * @author Mitchell de Vries
  */
 class ExerciseListPresenter(val view: ExerciseListView,
-                            val api: Api): BasePresenter<Exercise>, Callback<List<Exercise>> {
+                            val api: Api): BasePresenter, Callback<List<Exercise>> {
 
     private val TAG = "ExerciseListPresenter";
 
@@ -23,12 +23,12 @@ class ExerciseListPresenter(val view: ExerciseListView,
         api.service.getAllExercises().enqueue(this)
     }
 
-    override fun onSuccess(items: List<Exercise>) {
+    fun onSuccess(exercises: List<Exercise>) {
         view.hideProgress()
-        view.populateView(items)
+        view.populateView(exercises)
     }
 
-    override fun onFailure(t: Throwable) {
+    fun onFailure(t: Throwable) {
         view.hideProgress()
         view.showError(t.message!!)
     }

@@ -53,8 +53,8 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         presenter.start()
     }
 
-     override fun populateView(items: List<Schedule>){
-        scheduleList.adapter = ScheduleAdapter(items) {
+     override fun populateView(schedules: List<Schedule>){
+        scheduleList.adapter = ScheduleAdapter(schedules) {
             startActivity(Intent(context, HomeFragment::class.java))
         }
     }
