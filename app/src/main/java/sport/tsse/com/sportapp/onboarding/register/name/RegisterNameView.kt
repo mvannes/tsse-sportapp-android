@@ -6,5 +6,7 @@ package sport.tsse.com.sportapp.onboarding.register.name
  */
 interface RegisterNameView {
 
+    fun setNameOnTextChanged()
+
     fun goToRegisterBirthdateFragment()
 }

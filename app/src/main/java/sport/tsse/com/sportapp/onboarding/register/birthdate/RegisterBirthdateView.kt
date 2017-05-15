@@ -6,5 +6,7 @@ package sport.tsse.com.sportapp.onboarding.register.birthdate
  */
 interface RegisterBirthdateView {
 
+    fun setBirthdateFromDatePicker()
+
     fun gotoRegisterPasswordFragment()
 }

@@ -60,4 +60,5 @@
     <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
+    <string name="onboarding_username_hint">John Doe</string>
 </resources>

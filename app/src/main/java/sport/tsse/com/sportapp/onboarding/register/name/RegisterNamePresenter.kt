@@ -9,7 +9,7 @@ import sport.tsse.com.sportapp.Presenter
 class RegisterNamePresenter(private val registerNameView: RegisterNameView) : Presenter {
 
     override fun start() {
-
+        registerNameView.setNameOnTextChanged()
         registerNameView.goToRegisterBirthdateFragment()
     }
 

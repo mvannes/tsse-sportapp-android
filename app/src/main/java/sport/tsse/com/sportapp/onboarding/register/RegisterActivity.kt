@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_onboarding.*
 import sport.tsse.com.sportapp.onboarding.SingleFragmentOnboardingActivity
-import sport.tsse.com.sportapp.onboarding.register.email.RegisterEmailFragment
+import sport.tsse.com.sportapp.onboarding.register.username.RegisterUsernameFragment
 
 class RegisterActivity : SingleFragmentOnboardingActivity() {
 
@@ -13,6 +13,6 @@ class RegisterActivity : SingleFragmentOnboardingActivity() {
     }
 
     override fun createFragment(): Fragment {
-        return RegisterEmailFragment()
+        return RegisterUsernameFragment()
     }
 }

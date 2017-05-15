@@ -9,6 +9,7 @@ import sport.tsse.com.sportapp.Presenter
 class RegisterBirthdatePresenter(private val registerBirthdateView: RegisterBirthdateView) : Presenter {
 
     override fun start() {
+        registerBirthdateView.setBirthdateFromDatePicker()
         registerBirthdateView.gotoRegisterPasswordFragment()
     }
 }

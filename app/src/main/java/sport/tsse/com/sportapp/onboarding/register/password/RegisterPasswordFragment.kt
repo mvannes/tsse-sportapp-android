@@ -13,7 +13,7 @@ import sport.tsse.com.sportapp.R
  * Created by mohammedali on 09/03/2017.
  */
 
-class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
+class RegisterPasswordFragment : Fragment(), RegisterPasswordView { // TODO POST USER HERE
 
     lateinit private var presenter: RegisterPasswordPresenter
 
@@ -23,10 +23,8 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         presenter = RegisterPasswordPresenter(this)
         presenter.start()
-
     }
 
     override fun finishRegistration() {
