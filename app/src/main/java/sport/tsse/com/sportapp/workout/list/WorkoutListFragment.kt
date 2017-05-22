@@ -1,6 +1,5 @@
 package sport.tsse.com.sportapp.workout.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -10,11 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_workout_list.*
 import sport.tsse.com.sportapp.R
-import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.data.Workout
-import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
-import sport.tsse.com.sportapp.exercise.list.ExerciseListPresenter
-import sport.tsse.com.sportapp.exercise.list.ExerciseListView
 import sport.tsse.com.sportapp.network.Api
 
 /**

@@ -1,13 +1,11 @@
 package sport.tsse.com.sportapp.schedule.list
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_schedule.view.*
 import sport.tsse.com.sportapp.R
-import sport.tsse.com.sportapp.data.PersonalSchedule
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.schedule.list.ScheduleAdapter.ScheduleViewHolder
 import java.text.DateFormat

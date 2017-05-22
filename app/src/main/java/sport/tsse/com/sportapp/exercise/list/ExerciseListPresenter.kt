@@ -37,7 +37,7 @@ class ExerciseListPresenter(val view: ExerciseListView,
         if (response?.isSuccessful!!) {
             val exercises = response.body()
             onSuccess(exercises)
-            Log.d(TAG, "onResponse: " + exercises.toString())
+            Log.i(TAG, "onResponse: " + exercises.toString())
         }
     }
 

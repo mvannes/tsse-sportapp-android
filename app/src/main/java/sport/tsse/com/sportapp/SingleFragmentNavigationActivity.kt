@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
-import sport.tsse.com.sportapp.schedule.list.ScheduleListPresenter
 import sport.tsse.com.sportapp.workout.list.WorkoutListFragment
 
 class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

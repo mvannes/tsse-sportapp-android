@@ -35,9 +35,9 @@ class WorkoutListPresenter(val view: WorkoutListView,
 
     override fun onResponse(call: Call<List<Workout>>?, response: Response<List<Workout>>?) {
         if (response?.isSuccessful!!) {
-            val exercises = response.body()
-            onSuccess(exercises)
-            Log.d(TAG, "onResponse: " + exercises.toString())
+            val workouts = response.body()
+            onSuccess(workouts)
+            Log.i(TAG, "onResponse: " + workouts.toString())
         }
     }
 

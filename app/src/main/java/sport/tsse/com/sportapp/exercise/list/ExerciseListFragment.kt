@@ -13,7 +13,6 @@ import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
 import sport.tsse.com.sportapp.network.Api
-import sport.tsse.com.sportapp.exercise.list.ExerciseListAdapter
 
 /**
  * tsse-sportapp-android
