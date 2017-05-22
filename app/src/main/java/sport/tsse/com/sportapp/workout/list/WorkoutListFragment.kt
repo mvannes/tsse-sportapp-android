@@ -1,5 +1,6 @@
 package sport.tsse.com.sportapp.workout.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_workout_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Workout
 import sport.tsse.com.sportapp.network.Api
+import sport.tsse.com.sportapp.workout.detail.WorkoutDetailActivity
 
 /**
  * tsse-sportapp-android
@@ -34,10 +36,9 @@ class WorkoutListFragment : Fragment(), WorkoutListView {
     override fun populateView(workouts: List<Workout>) {
         workoutListRecyclerView.apply {
             setHasFixedSize(true)
-            val linearLayoutManager = LinearLayoutManager(context)
-            layoutManager = linearLayoutManager
+            layoutManager = LinearLayoutManager(context)
             adapter = WorkoutListAdapter(workouts) {
-//                startActivity(Intent(context, WorkoutDetailActivity::class.java))
+                startActivity(Intent(context, WorkoutDetailActivity::class.java))
             }
         }
     }
