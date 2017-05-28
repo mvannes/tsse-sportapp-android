@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_onboarding_login.*
 import sport.tsse.com.sportapp.R
-import sport.tsse.com.sportapp.SingleFragmentNavigationActivity
+import sport.tsse.com.sportapp.base.SingleFragmentNavigationActivity
 import sport.tsse.com.sportapp.onboarding.forgotPassword.ForgotPasswordActivity
 
 /**

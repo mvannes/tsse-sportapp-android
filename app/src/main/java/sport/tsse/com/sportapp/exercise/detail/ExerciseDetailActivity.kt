@@ -1,23 +1,29 @@
 package sport.tsse.com.sportapp.exercise.detail
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.fragment_exercise_detail.*
+import android.content.Context
+import android.content.Intent
+import android.support.v4.app.Fragment
 import sport.tsse.com.sportapp.R
+import sport.tsse.com.sportapp.base.SingleFragmentActivity
 
-class ExerciseDetailActivity : AppCompatActivity() {
+class ExerciseDetailActivity : SingleFragmentActivity() {
+    override fun createFragment(): Fragment {
+        val exerciseId = intent.getIntExtra(EXTRA_EXERCISE_ID, 0)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_exercise_detail)
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
-
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        return ExerciseDetailFragment.newInstance(exerciseId)
     }
 
+    override fun setToolbarTitle(): String {
+        return getString(R.string.title_exercise_details)
+    }
+
+    companion object {
+        val EXTRA_EXERCISE_ID = "sport.tsse.com.sportapp.exercise.detail.exercise_id"
+
+        fun newIntent(packageContext: Context, exerciseId: Int): Intent {
+            val intent = Intent(packageContext, ExerciseDetailActivity::class.java)
+            intent.putExtra(EXTRA_EXERCISE_ID, exerciseId)
+            return intent
+        }
+    }
 }

@@ -1,11 +1,12 @@
 package sport.tsse.com.sportapp.workout.list
 
-import android.util.Log
+import android.content.Context
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.Workout
+import sport.tsse.com.sportapp.data.storage.repository.WorkoutRepository
 import sport.tsse.com.sportapp.network.Api
 
 /**
@@ -14,36 +15,36 @@ import sport.tsse.com.sportapp.network.Api
  * @author Mitchell de Vries
  */
 class WorkoutListPresenter(val view: WorkoutListView,
-                           val api: Api): BasePresenter, Callback<List<Workout>> {
+                           val api: Api,
+                           val context: Context) : BasePresenter, Callback<List<Workout>> {
 
     private val TAG = "WorkoutListPresenter";
+    val repository = WorkoutRepository(context)
 
     override fun start() {
         view.showProgress()
         api.service.getAllWorkouts().enqueue(this)
-    }
 
-    fun onSuccess(workouts: List<Workout>) {
-        view.hideProgress()
-        view.populateView(workouts)
-    }
-
-    fun onFailure(t: Throwable) {
-        view.hideProgress()
-        view.showError(t.message!!)
+        if (!repository.isEmpty()) {
+            view.hideProgress()
+            view.loadWorkouts(repository.findAll())
+        }
     }
 
     override fun onResponse(call: Call<List<Workout>>?, response: Response<List<Workout>>?) {
         if (response?.isSuccessful!!) {
             val workouts = response.body()
-            onSuccess(workouts)
-            Log.i(TAG, "onResponse: " + workouts.toString())
+            for (workout in workouts) {
+                repository.save(workout)
+            }
+            view.loadWorkouts(repository.findAll())
+            view.hideProgress()
         }
     }
 
     override fun onFailure(call: Call<List<Workout>>?, t: Throwable?) {
-        onFailure(t!!)
-        Log.e(TAG, "onFailure: " + t)
+        view.hideProgress()
+        view.showError("Error occurred while fetching new data: " + t?.message!!)
     }
 
 }
