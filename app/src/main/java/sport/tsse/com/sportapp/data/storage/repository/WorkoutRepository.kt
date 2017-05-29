@@ -78,8 +78,6 @@ class WorkoutRepository(context: Context) {
                 Array(1, { id.toString() }))
     }
 
-    fun isEmpty() = findAll().isEmpty()
-
     private fun getValues(workout: Workout): ContentValues {
         val values = ContentValues()
         values.put(WorkoutTable.Cols.ID, workout.id)

@@ -3,72 +3,29 @@ package sport.tsse.com.sportapp.data.storage.repository
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
+import org.jetbrains.anko.db.RowParser
+import org.jetbrains.anko.db.rowParser
+import org.jetbrains.anko.db.select
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.data.storage.DbCursorWrapper
-import sport.tsse.com.sportapp.data.storage.DbHelper
 import sport.tsse.com.sportapp.data.storage.DbSchema.ExerciseTable
+import sport.tsse.com.sportapp.data.storage.SQLiteCursorFactory
+import sport.tsse.com.sportapp.data.storage.database
 
 /**
-* tsse-sportapp-android
-*
-* @author Mitchell de Vries
-*/
+ * tsse-sportapp-android
+ *
+ * @author Mitchell de Vries
+ */
 class ExerciseRepository(context: Context) {
 
-    val database: SQLiteDatabase = DbHelper(context).writableDatabase
+    val database: SQLiteDatabase = context.database.writableDatabase
 
-    fun findAll(): List<Exercise> {
-        val exercises = ArrayList<Exercise>()
+    fun findAll() = queryExercises()
 
-        val cursor = queryExercises(null, null)
+    fun findAllForWorkout(id: Int) = queryExercises()
 
-        try {
-            cursor.moveToFirst()
-            while (!cursor.isAfterLast) {
-                exercises.add(cursor.getExercise())
-                cursor.moveToNext()
-            }
-        } finally {
-            cursor.close()
-        }
-
-        return exercises
-    }
-
-    fun findAllForWorkout(id: Int): List<Exercise> {
-        val exercises = ArrayList<Exercise>()
-
-        val cursor = queryExercises(ExerciseTable.Cols.WORKOUT_ID + "=" + id, null)
-
-        try {
-            cursor.moveToFirst()
-            while (!cursor.isAfterLast) {
-                exercises.add(cursor.getExercise())
-                cursor.moveToNext()
-            }
-        } finally {
-            cursor.close()
-        }
-
-        return exercises
-    }
-
-    fun findOne(id: Int): Exercise? {
-
-        val cursor = queryExercises(ExerciseTable.Cols.ID + "=" + id, null) //TODO: Temporary Fix NOT SAFE!!, Mitchell de Vries
-
-        try {
-            if (cursor.count == 0) {
-                return null
-            }
-
-            cursor.moveToFirst()
-            return cursor.getExercise()
-        } finally {
-            cursor.close()
-        }
-    }
+    fun findOne(id: Int) = queryExercise(id)
 
     fun save(exercise: Exercise) {
         val values = getValues(exercise)
@@ -78,12 +35,12 @@ class ExerciseRepository(context: Context) {
     fun update(exercise: Exercise) {
         val values = getValues(exercise)
 
-        database.update(ExerciseTable.NAME, values, ExerciseTable.Cols.ID + " = ?",
-                Array(1, { exercise.id.toString() })) //TODO NEED FIX, Mitchell de Vries
+        database.update(ExerciseTable.NAME, values, ExerciseTable.Cols.ID + " =?",
+                arrayOf(exercise.id.toString()))
     }
 
     fun delete(id: Int) {
-        database.delete(ExerciseTable.NAME, ExerciseTable.Cols.ID + " = ?",
+        database.delete(ExerciseTable.NAME, ExerciseTable.Cols.ID + " =?",
                 Array(1, { id.toString() }))
     }
 
@@ -99,17 +56,18 @@ class ExerciseRepository(context: Context) {
         return values
     }
 
-    private fun queryExercises(whereClause: String?, whereArgs: Array<String>?): DbCursorWrapper {
-        val cursor = database.query(
-                ExerciseTable.NAME,
-                null, // Columns - null selects all columns
-                whereClause,
-                whereArgs,
-                null, // Group By
-                null, // Having
-                null    // Order By
-        )
+    private fun queryExercises() = database.select(ExerciseTable.NAME).parseList(exerciseParser())
 
-        return DbCursorWrapper(cursor)
+    private fun queryExercise(id: Int)
+            = database
+            .select(ExerciseTable.NAME)
+            .where(ExerciseTable.Cols.ID + " = {exerciseId}", "exerciseId" to id)
+            .parseOpt(exerciseParser())
+
+    private fun exerciseParser(): RowParser<Exercise> {
+        return rowParser {
+            id: Int, name: String, description: String, category: String, workoutId: Int? ->
+            Exercise(id, name, description, category)
+        }
     }
 }

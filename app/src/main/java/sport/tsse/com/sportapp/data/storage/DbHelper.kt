@@ -2,18 +2,29 @@ package sport.tsse.com.sportapp.data.storage
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
+import org.jetbrains.anko.db.*
 import sport.tsse.com.sportapp.data.storage.DbSchema.ExerciseTable
 import sport.tsse.com.sportapp.data.storage.DbSchema.WorkoutTable
 
 /**
  * Created by mitchelldevries on 26/05/2017.
  */
-class DbHelper(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) {
+class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, VERSION) {
 
     companion object {
         val NAME = "sport.db"
         val VERSION = 1
+
+        private var instance: DbHelper? = null
+
+        @Synchronized
+        fun getInstance(context: Context): DbHelper {
+            if (instance == null) {
+                instance = DbHelper(context)
+            }
+
+            return instance!!
+        }
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -22,29 +33,30 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS " + ExerciseTable.NAME)
-        db?.execSQL("DROP TABLE IF EXISTS " + WorkoutTable.NAME)
-
+        db?.dropTable(ExerciseTable.NAME, true)
+        db?.dropTable(WorkoutTable.NAME, true)
         onCreate(db)
     }
 
     private fun createExerciseTable(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE " + ExerciseTable.NAME + "(" +
-                ExerciseTable.Cols.ID + " primary key, " +
-                ExerciseTable.Cols.NAME + ", " +
-                ExerciseTable.Cols.DESCRIPTION + ", " +
-                ExerciseTable.Cols.CATEGORY + ", " +
-                ExerciseTable.Cols.WORKOUT_ID +
-                ")"
+        db?.createTable(ExerciseTable.NAME, true,
+                ExerciseTable.Cols.ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                ExerciseTable.Cols.NAME to TEXT,
+                ExerciseTable.Cols.DESCRIPTION to TEXT,
+                ExerciseTable.Cols.CATEGORY to TEXT,
+                ExerciseTable.Cols.WORKOUT_ID to INTEGER
         )
     }
 
     private fun createWorkoutTable(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE " + WorkoutTable.NAME + "(" +
-                WorkoutTable.Cols.ID + " primary key, " +
-                WorkoutTable.Cols.NAME + ", " +
-                WorkoutTable.Cols.DESCRIPTION +
-                ")"
+        db?.createTable(WorkoutTable.NAME, true,
+                WorkoutTable.Cols.ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                WorkoutTable.Cols.NAME to TEXT,
+                WorkoutTable.Cols.DESCRIPTION to TEXT
         )
     }
+
 }
+
+val Context.database: DbHelper
+    get() = DbHelper.getInstance(applicationContext)

@@ -15,7 +15,7 @@ import sport.tsse.com.sportapp.data.storage.repository.ExerciseRepository
 class ExerciseDetailFragment : Fragment() {
 
     companion object {
-        private val ARG_EXERCISE_ID = "exercise_id"
+        val ARG_EXERCISE_ID = "exercise_id"
 
         fun newInstance(exerciseId: Int): ExerciseDetailFragment {
             val args = Bundle()
