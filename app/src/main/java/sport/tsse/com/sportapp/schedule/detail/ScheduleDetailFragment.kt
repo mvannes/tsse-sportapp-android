@@ -3,10 +3,12 @@ package sport.tsse.com.sportapp.schedule.detail
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_schedule_detail.*
+import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.network.Api
@@ -23,20 +25,21 @@ class ScheduleDetailFragment(val scheduleId: Long): Fragment(), ScheduleDetailVi
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        presenter = ScheduleDetailPresenter(this, Api(), scheduleId)
+        workoutList.layoutManager = LinearLayoutManager(context)
+        presenter                 = ScheduleDetailPresenter(this, Api(), scheduleId)
         presenter.start()
     }
 
     override fun showProgress() {
         if (isAdded) {
-            scheduleDetailProgress.visibility = View.VISIBLE
+            scheduleDetailProgress.visibility    = View.VISIBLE
             scheduleDetailInformation.visibility = View.GONE
         }
     }
 
     override fun hideProgress() {
         if (isAdded) {
-            scheduleDetailProgress.visibility = View.GONE
+            scheduleDetailProgress.visibility    = View.GONE
             scheduleDetailInformation.visibility = View.VISIBLE
         }
     }
@@ -44,16 +47,18 @@ class ScheduleDetailFragment(val scheduleId: Long): Fragment(), ScheduleDetailVi
     override fun showError(errorMessage: String) {
         if (isAdded) {
             AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMessage)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create()
-                    .show()
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton(android.R.string.ok, null)
+                .create()
+                .show()
         }
     }
 
     override fun populateView(schedule: Schedule) {
-        scheduleNameTextView.text = schedule.name
+        scheduleNameTextView.text        = schedule.name
+        scheduleDescriptionTextView.text = schedule.description
+
     }
 
 }

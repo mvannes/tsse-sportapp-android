@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.network.Api
 import sport.tsse.com.sportapp.schedule.add.ScheduleCreationActivity
+import sport.tsse.com.sportapp.schedule.detail.ScheduleDetailActivity
 
 /**
  * tsse-sportapp-android
@@ -33,15 +35,18 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         fabAddSchedule.setOnClickListener {
             startActivity(Intent(context, ScheduleCreationActivity::class.java))
         }
-        presenter = ScheduleListPresenter(this, Api());
-        presenter.start()
-
         scheduleList.layoutManager = LinearLayoutManager(context)
+        presenter                  = ScheduleListPresenter(this, Api());
+        presenter.start()
     }
     
-     override fun populateView(schedules: List<Schedule>){
+     override fun populateView(schedules: List<Schedule>) {
         scheduleList.adapter = ScheduleAdapter(schedules) {
-            startActivity(Intent(context, HomeFragment::class.java))
+            s ->
+            var intent: Intent = Intent(context, ScheduleDetailActivity::class.java)
+            // Passing the id to ensure we get new information from api, make sure it's up to date.
+            intent.putExtra("scheduleId", s.id)
+            startActivity(intent)
         }
     }
 
@@ -62,11 +67,11 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
     override fun showError(errorMessage: String) {
         if (isAdded) {
             AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMessage)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create()
-                    .show()
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton(android.R.string.ok, null)
+                .create()
+                .show()
         }
     }
 }

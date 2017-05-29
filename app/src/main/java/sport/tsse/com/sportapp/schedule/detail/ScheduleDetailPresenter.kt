@@ -17,8 +17,9 @@ class ScheduleDetailPresenter(
 ): BasePresenter, Callback<Schedule> {
 
     override fun start() {
-        view.showProgress()
-        api.service.getSchedule(scheduleId).enqueue(this)
+        view.populateView(Schedule(-1,"name", "string", emptyList(), 1))
+//        view.showProgress()
+//        api.service.getSchedule(scheduleId).enqueue(this)
     }
 
     override fun onFailure(call: Call<Schedule>?, t: Throwable?) {
