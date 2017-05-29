@@ -7,6 +7,7 @@ import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.base.SingleFragmentActivity
 
 class ExerciseDetailActivity : SingleFragmentActivity() {
+
     override fun createFragment(): Fragment {
         val exerciseId = intent.getIntExtra(EXTRA_EXERCISE_ID, 0)
 
@@ -18,7 +19,7 @@ class ExerciseDetailActivity : SingleFragmentActivity() {
     }
 
     companion object {
-        val EXTRA_EXERCISE_ID = "sport.tsse.com.sportapp.exercise.detail.exercise_id"
+        private val EXTRA_EXERCISE_ID = "sport.tsse.com.sportapp.exercise.detail.exercise_id"
 
         fun newIntent(packageContext: Context, exerciseId: Int): Intent {
             val intent = Intent(packageContext, ExerciseDetailActivity::class.java)

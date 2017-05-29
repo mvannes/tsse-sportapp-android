@@ -22,7 +22,7 @@ class WorkoutDetailActivity : SingleFragmentActivity() {
     }
 
     companion object {
-        val EXTRA_WORKOUT_ID = "sport.tsse.com.sportapp.workout.detail.workout_id"
+        private val EXTRA_WORKOUT_ID = "sport.tsse.com.sportapp.workout.detail.workout_id"
 
         fun newIntent(packageContext: Context, workoutId: Int): Intent {
             val intent = Intent(packageContext, WorkoutDetailActivity::class.java)
