@@ -1,5 +1,6 @@
 package sport.tsse.com.sportapp.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -12,6 +13,7 @@ import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
+import sport.tsse.com.sportapp.settings.SettingsFragment
 import sport.tsse.com.sportapp.workout.list.WorkoutListFragment
 
 class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -64,7 +66,7 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
 //            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
             }
             R.id.nav_settings -> {
-//                replaceFragment(AccountSettingsFragment(), getString(R.string.settings))
+                replaceFragment(SettingsFragment(), getString(R.string.settings))
             }
         }
 

@@ -18,6 +18,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/AppTheme.NoActionBar.FixForPreferenceThemeOverlay</item>
+    </style>
+    <style name="AppTheme.NoActionBar.FixForPreferenceThemeOverlay" parent="PreferenceThemeOverlay">
+        <item name="preferenceFragmentListStyle">@style/AppTheme.NoActionBar.FixForPreferenceFragmentList</item>
+    </style>
+    <style name="AppTheme.NoActionBar.FixForPreferenceFragmentList">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
