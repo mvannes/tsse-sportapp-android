@@ -1,7 +1,5 @@
 package sport.tsse.com.sportapp.data
 
-import java.util.*
-
 /**
  * @author Michael van Nes
  */

@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule

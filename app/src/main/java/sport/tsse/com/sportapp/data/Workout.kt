@@ -8,4 +8,5 @@ package sport.tsse.com.sportapp.data
 data class Workout(val id: Int,
                    val name: String,
                    val description: String,
-                   val category: String)
+                   val category: String,
+                   val exercises: List<Exercise>)
