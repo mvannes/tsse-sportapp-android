@@ -1,11 +1,12 @@
 package sport.tsse.com.sportapp.exercise.list
 
-import android.util.Log
+import android.content.Context
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.Exercise
+import sport.tsse.com.sportapp.data.storage.repository.ExerciseRepository
 import sport.tsse.com.sportapp.network.Api
 
 /**
@@ -14,36 +15,36 @@ import sport.tsse.com.sportapp.network.Api
  * @author Mitchell de Vries
  */
 class ExerciseListPresenter(val view: ExerciseListView,
-                            val api: Api): BasePresenter, Callback<List<Exercise>> {
+                            val api: Api,
+                            val context: Context) : BasePresenter, Callback<List<Exercise>> {
 
-    private val TAG = "ExerciseListPresenter";
+    private val repository = ExerciseRepository(context)
 
     override fun start() {
         view.showProgress()
         api.service.getAllExercises().enqueue(this)
-    }
 
-    fun onSuccess(exercises: List<Exercise>) {
-        view.hideProgress()
-        view.populateView(exercises)
-    }
-
-    fun onFailure(t: Throwable) {
-        view.hideProgress()
-        view.showError(t.message!!)
+        val exercises = repository.findAll()
+        if (!exercises.isEmpty()) {
+            view.loadExercises(exercises)
+            view.hideProgress()
+        }
     }
 
     override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
         if (response?.isSuccessful!!) {
             val exercises = response.body()
-            onSuccess(exercises)
-            Log.i(TAG, "onResponse: " + exercises.toString())
+            for (exercise in exercises) {
+                repository.save(exercise)
+            }
+            view.loadExercises(repository.findAll())
+            view.hideProgress()
         }
     }
 
     override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
-        onFailure(t!!)
-        Log.e(TAG, "onFailure: " + t)
+        view.hideProgress()
+        view.showError("Error occurred while fetching new data: " + t?.message!! + ".")
     }
 
 }

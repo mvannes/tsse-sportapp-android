@@ -1,9 +1,10 @@
 package sport.tsse.com.sportapp.exercise.list
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -29,17 +30,19 @@ class ExerciseListFragment : Fragment(), ExerciseListView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = ExerciseListPresenter(this, Api())
+        presenter = ExerciseListPresenter(this, Api(), context)
         presenter.start()
     }
 
-    override fun populateView(exercises: List<Exercise>) {
+    override fun loadExercises(exercises: List<Exercise>) {
         exerciseListRecyclerView.apply {
             setHasFixedSize(true)
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             adapter = ExerciseListAdapter(exercises) {
-                startActivity(Intent(context, ExerciseDetailActivity::class.java))
+                startActivity(ExerciseDetailActivity.newIntent(context, it.id))
+                val c = context as AppCompatActivity
+                c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
         }
     }
@@ -60,12 +63,7 @@ class ExerciseListFragment : Fragment(), ExerciseListView {
 
     override fun showError(errorMessage: String) {
         if (isAdded) {
-            AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMessage)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create()
-                    .show()
+            Snackbar.make(view!!, errorMessage, Snackbar.LENGTH_LONG).show()
         }
     }
 

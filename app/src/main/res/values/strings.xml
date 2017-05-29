@@ -62,4 +62,9 @@
     <string name="workout_name">Workout name</string>
     <string name="chat">Chat</string>
     <string name="buddies">Buddies</string>
+    <string name="title_add_workout">Add Workout</string>
+    <string name="title_workout_details">Workout Details</string>
+    <string name="title_exercise_details">Exercise Details</string>
+    <string name="title_placeholder">Title</string>
+    <string name="category_placeholder">Category</string>
 </resources>

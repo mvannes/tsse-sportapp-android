@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp
+package sport.tsse.com.sportapp.base
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_navigation.*
+import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment

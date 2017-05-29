@@ -19,6 +19,6 @@ interface ApiService {
     @GET("schedule")
     fun getAllSchedules(): Call<List<Schedule>>
 
-    @GET("workout")
+    @GET("workouts")
     fun getAllWorkouts(): Call<List<Workout>>
 }
