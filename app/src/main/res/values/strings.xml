@@ -51,7 +51,7 @@
     <string name="action_settings">Settings</string>
     <string name="empty_text_no_exercises">There are currently no exercises.</string>
     <string name="my_schedules">My Schedules</string>
-    <string name="minus_seperator">-</string>
+    <string name="minus_separator">-</string>
     <string name="exercises">Exercises</string>
     <string name="add_exercise">Add Exercise</string>
     <string name="choose_workout">Choose workout</string>
