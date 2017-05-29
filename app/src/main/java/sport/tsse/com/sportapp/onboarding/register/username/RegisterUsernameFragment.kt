@@ -2,8 +2,6 @@ package sport.tsse.com.sportapp.onboarding.register.username
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,36 +23,35 @@ class RegisterUsernameFragment : Fragment(), RegisterUsernameView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = RegisterUsernamePresenter(this)
-        presenter.start()
-    }
 
-    override fun setUsernameOnTextChanged() {
-        usernameInputEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                user.username = s.toString()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
-    }
-
-    override fun goToRegisterNameFragment() {
         fab.setOnClickListener({
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                            R.anim.enter_from_right_onboarding,
-                            R.anim.exit_to_left_onboarding,
-                            R.anim.enter_from_left_onboarding,
-                            R.anim.exit_to_right_onboarding
-                    )
-                    .replace(R.id.fragmentContainer, RegisterNameFragment().newInstance(user))
-                    .addToBackStack(null)
-                    .commit()
+            presenter = RegisterUsernamePresenter(this, user, usernameWrapper?.editText!!.text.toString())
+            presenter.start()
         })
+    }
+
+    override fun performUsernameCheck(valid: Boolean): Boolean {
+        if (!valid) {
+            usernameWrapper.isErrorEnabled = true
+            usernameWrapper.error = resources.getString(R.string.validate_email_error_message)
+            return false
+        } else {
+            usernameWrapper.isErrorEnabled = false
+            usernameWrapper.error = ""
+            return true
+        }
+    }
+
+    override fun goToRegisterNameFragment(user: User) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.anim.enter_from_right_onboarding,
+                        R.anim.exit_to_left_onboarding,
+                        R.anim.enter_from_left_onboarding,
+                        R.anim.exit_to_right_onboarding
+                )
+                .replace(R.id.fragmentContainer, RegisterNameFragment().newInstance(user))
+                .addToBackStack(null)
+                .commit()
     }
 }

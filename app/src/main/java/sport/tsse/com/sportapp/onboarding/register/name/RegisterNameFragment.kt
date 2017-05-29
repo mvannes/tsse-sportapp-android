@@ -2,8 +2,6 @@ package sport.tsse.com.sportapp.onboarding.register.name
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +21,6 @@ class RegisterNameFragment : Fragment(), RegisterNameView {
     private val ARG_USER: String? = "sport.tsse.com.sportapp.onboarding.register.name.RegisterNameFragment.user"
 
     lateinit private var presenter: RegisterNamePresenter
-    private var user: User = User()
 
     fun newInstance(user: User): RegisterNameFragment {
         val registerNameFragment = RegisterNameFragment()
@@ -42,51 +39,48 @@ class RegisterNameFragment : Fragment(), RegisterNameView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments.containsKey(ARG_USER))
-            user = arguments?.getSerializable(ARG_USER) as User
-
-        presenter = RegisterNamePresenter(this)
-        presenter.start()
+        fab.setOnClickListener {
+            presenter = RegisterNamePresenter(this, arguments?.getSerializable(ARG_USER) as User,
+                    firstNameWrapper?.editText!!.text.toString(),
+                    lastNameWrapper?.editText!!.text.toString())
+            presenter.start()
+        }
     }
 
-    override fun setNameOnTextChanged() {
-        firstNameInputEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                user.firstName = s.toString()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
-
-        lastNameInputEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                user.lastName = s.toString()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
+    override fun performFirstNameCheck(validate: Boolean): Boolean {
+        if (!validate) {
+            firstNameWrapper.isErrorEnabled = true
+            firstNameWrapper.error = resources.getString(R.string.validate_name_error_message)
+            return false
+        } else {
+            firstNameWrapper.isErrorEnabled = false
+            firstNameWrapper.error = ""
+            return true
+        }
     }
 
-    override fun goToRegisterBirthdateFragment() {
-        fab.setOnClickListener({
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                            R.anim.enter_from_right_onboarding,
-                            R.anim.exit_to_left_onboarding,
-                            R.anim.enter_from_left_onboarding,
-                            R.anim.exit_to_right_onboarding
-                    )
-                    .replace(R.id.fragmentContainer, RegisterBirthdateFragment().newInstance(user))
-                    .addToBackStack(null)
-                    .commit()
-        })
+    override fun performLastNameCheck(validate: Boolean): Boolean {
+        if (!validate) {
+            lastNameWrapper.isErrorEnabled = true
+            lastNameWrapper.error = resources.getString(R.string.validate_name_error_message)
+            return false
+        } else {
+            lastNameWrapper.isErrorEnabled = false
+            lastNameWrapper.error = ""
+            return true
+        }
+    }
+
+    override fun goToRegisterBirthdateFragment(user: User) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.anim.enter_from_right_onboarding,
+                        R.anim.exit_to_left_onboarding,
+                        R.anim.enter_from_left_onboarding,
+                        R.anim.exit_to_right_onboarding
+                )
+                .replace(R.id.fragmentContainer, RegisterBirthdateFragment().newInstance(user))
+                .addToBackStack(null)
+                .commit()
     }
 }

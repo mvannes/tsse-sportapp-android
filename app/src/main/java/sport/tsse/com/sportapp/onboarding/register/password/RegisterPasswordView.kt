@@ -6,5 +6,13 @@ package sport.tsse.com.sportapp.onboarding.register.password
  */
 interface RegisterPasswordView {
 
-    fun finishRegistration()
+    fun goToRegistrationCompletedFragment()
+
+    fun performPasswordCheck(valid: Boolean): Boolean
+
+    fun showProgress()
+
+    fun hideProgress()
+
+    fun showError(errorMessage: String)
 }

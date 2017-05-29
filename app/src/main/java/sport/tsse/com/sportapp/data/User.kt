@@ -6,16 +6,14 @@ import java.util.*
 /**
  * Created by mohammedali on 30/03/2017.
  */
-data class User(val userId: Int,
-                var birthdate: Date,
-                var displayName: String,
-                var enabled: Boolean,
-                var firstName: String,
-                var lastName: String,
-                var password: String,
-                var status: String,
-                var username: String
+data class User(val user_id: Int = 0,
+                var birthdate: Date = Date(),
+                var displayName: String = "",
+                var enabled: Boolean = false,
+                var firstName: String = "",
+                var lastName: String = "",
+                var password: String = "",
+                var status: String = "",
+                var username: String = ""
 
-) : Serializable {
-    constructor() : this(0, Date(), "", false, "", "", "", "", "")
-}
+) : Serializable

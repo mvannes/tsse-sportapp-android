@@ -61,4 +61,7 @@
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
     <string name="onboarding_username_hint">John Doe</string>
+    <string name="validate_email_error_message">Not a valid email address!</string>
+    <string name="validate_name_error_message">Can\'t be empty!</string>
+    <string name="validate_password_error_message">Must at least be 8 characters long</string>
 </resources>

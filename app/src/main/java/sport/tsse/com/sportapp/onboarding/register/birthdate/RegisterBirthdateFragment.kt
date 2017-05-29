@@ -2,7 +2,6 @@ package sport.tsse.com.sportapp.onboarding.register.birthdate
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +17,12 @@ import java.util.*
  * Created by mohammedali on 09/03/2017.
  */
 
-class RegisterBirthdateFragment : Fragment(), RegisterBirthdateView { // TODO make it remember the selected date
+class RegisterBirthdateFragment : Fragment(), RegisterBirthdateView {
 
     private val ARG_USER: String? = "sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthdateFragment.user"
 
     lateinit private var presenter: RegisterBirthdatePresenter
-    private var user: User = User()
+    private var calendar = Calendar.getInstance()
 
     fun newInstance(newUser: User): RegisterBirthdateFragment {
         val registerBirthdateFragment = RegisterBirthdateFragment()
@@ -42,46 +41,40 @@ class RegisterBirthdateFragment : Fragment(), RegisterBirthdateView { // TODO ma
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments.containsKey(ARG_USER))
-            user = arguments?.getSerializable(ARG_USER) as User
+        setBirthdateFromDatePicker()
 
-        presenter = RegisterBirthdatePresenter(this)
-        presenter.start()
+        fab.setOnClickListener {
+            presenter = RegisterBirthdatePresenter(this, arguments?.getSerializable(ARG_USER) as User, calendar)
+            presenter.start()
+        }
     }
 
-    override fun setBirthdateFromDatePicker() {
+    private fun setBirthdateFromDatePicker() {
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         birthdateDatePicker.maxDate = calendar.timeInMillis
 
-        birthdateDatePicker.init(calendar.get(Calendar.YEAR),
+        birthdateDatePicker.init(
+                calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)) {
-
-            birthdateDatePicker, year, month, dayOfMonth ->
-            Log.d("Date", "Year=" + year + " Month=" + (month + 1) + " day=" + dayOfMonth)
-            val c = Calendar.getInstance()
-            c.set(year, month - 1, dayOfMonth, 0, 0)
-            Log.d("Calendar Date:", c.time.toString())
-
-            //TODO create a Date object and set it to the user.birthdate
-            //TODO maybe change the start date of the datepicker
+                calendar.get(Calendar.DAY_OF_MONTH)
+        ) {
+            _, year, month, dayOfMonth ->
+            calendar.set(year, month, dayOfMonth)
         }
     }
 
-    override fun gotoRegisterPasswordFragment() {
-        fab.setOnClickListener({
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                            R.anim.enter_from_right_onboarding,
-                            R.anim.exit_to_left_onboarding,
-                            R.anim.enter_from_left_onboarding,
-                            R.anim.exit_to_right_onboarding
-                    )
-                    .replace(R.id.fragmentContainer, RegisterPasswordFragment())
-                    .addToBackStack(null)
-                    .commit()
-        })
+    override fun gotoRegisterPasswordFragment(user: User) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.anim.enter_from_right_onboarding,
+                        R.anim.exit_to_left_onboarding,
+                        R.anim.enter_from_left_onboarding,
+                        R.anim.exit_to_right_onboarding
+                )
+                .replace(R.id.fragmentContainer, RegisterPasswordFragment().newInstance(user))
+                .addToBackStack(null)
+                .commit()
     }
 }
 
