@@ -23,8 +23,10 @@ class ExerciseListPresenter(val view: ExerciseListView,
     override fun start() {
         view.showProgress()
         api.service.getAllExercises().enqueue(this)
-        if (!repository.isEmpty()) {
-            view.loadExercises(repository.findAll())
+
+        val exercises = repository.findAll()
+        if (!exercises.isEmpty()) {
+            view.loadExercises(exercises)
             view.hideProgress()
         }
     }

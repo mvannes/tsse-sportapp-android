@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_fragment.*
 import sport.tsse.com.sportapp.R
+import sport.tsse.com.sportapp.data.storage.DbSchema
 
 /**
 * tsse-sportapp-android

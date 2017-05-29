@@ -25,6 +25,6 @@ class DbCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
         val name = getString(getColumnIndex(ExerciseTable.Cols.NAME))
         val description = getString(getColumnIndex(ExerciseTable.Cols.DESCRIPTION))
 
-        return Workout(id, name, description, null)
+        return Workout(id, name, description, emptyList())
     }
 }

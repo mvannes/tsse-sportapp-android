@@ -18,16 +18,16 @@ class WorkoutListPresenter(val view: WorkoutListView,
                            val api: Api,
                            val context: Context) : BasePresenter, Callback<List<Workout>> {
 
-    private val TAG = "WorkoutListPresenter";
     val repository = WorkoutRepository(context)
 
     override fun start() {
         view.showProgress()
         api.service.getAllWorkouts().enqueue(this)
 
-        if (!repository.isEmpty()) {
+        val workouts = repository.findAll()
+        if (!workouts.isEmpty()) {
             view.hideProgress()
-            view.loadWorkouts(repository.findAll())
+            view.loadWorkouts(workouts)
         }
     }
 
