@@ -17,10 +17,10 @@ interface ApiService {
     @GET("exercises")
     fun getAllExercises(): Call<List<Exercise>>
 
-    @GET("schedule")
+    @GET("schedules")
     fun getAllSchedules(): Call<List<Schedule>>
 
-    @GET("schedule/{id}")
+    @GET("schedules/{id}")
     fun getSchedule(@Path("id") id: Long): Call<Schedule>
 
     @GET("workout")

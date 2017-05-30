@@ -1,5 +1,6 @@
 package sport.tsse.com.sportapp.schedule.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -12,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.network.Api
+import sport.tsse.com.sportapp.workout.detail.WorkoutDetailActivity
+import sport.tsse.com.sportapp.workout.list.WorkoutListAdapter
 
 /**
  * Created by Michael on 15/05/2017.
@@ -59,6 +62,11 @@ class ScheduleDetailFragment(val scheduleId: Long): Fragment(), ScheduleDetailVi
         scheduleNameTextView.text        = schedule.name
         scheduleDescriptionTextView.text = schedule.description
 
+        workoutList.setHasFixedSize(true)
+        workoutList.layoutManager = LinearLayoutManager(context)
+        workoutList.adapter = WorkoutListAdapter(schedule.workouts) {
+            startActivity(Intent(context, WorkoutDetailActivity::class.java))
+        }
     }
 
 }

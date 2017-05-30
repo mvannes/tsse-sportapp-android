@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule
-import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.network.Api
 import sport.tsse.com.sportapp.schedule.add.ScheduleCreationActivity
 import sport.tsse.com.sportapp.schedule.detail.ScheduleDetailActivity
@@ -43,7 +41,7 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         scheduleList.adapter = ScheduleAdapter(schedules) {
             s ->
             var intent: Intent = Intent(context, ScheduleDetailActivity::class.java)
-            // Passing the id to ensure we get new information from api, make sure it's up to date.
+            // Passing the id to ensure we reload in the detail view.
             intent.putExtra("scheduleId", s.id)
             startActivity(intent)
         }

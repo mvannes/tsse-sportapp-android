@@ -17,7 +17,7 @@ import java.util.*
 class ScheduleListPresenter(private val view: ScheduleListView, private val api: Api):
         BasePresenter, Callback<List<Schedule>> {
     override fun start() {
-        view.populateView(listOf(Schedule(-1,"name", "string", emptyList(), 1)))
+        view.populateView(listOf(Schedule(-1,"Really great get swole schedule", "string", emptyList(), 1)))
 //        view.showProgress()
 //        api.service.getAllSchedules().enqueue(this)
     }

@@ -11,7 +11,6 @@ class ScheduleDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        Log.d("WTF?", intent.extras.toString())
         val scheduleId: Long = intent.getLongExtra("scheduleId", -1)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, ScheduleDetailFragment(scheduleId))
