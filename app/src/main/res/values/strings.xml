@@ -67,4 +67,5 @@
     <string name="title_exercise_details">Exercise Details</string>
     <string name="title_placeholder">Title</string>
     <string name="category_placeholder">Category</string>
+    <string name="action_search">Search</string>
 </resources>

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_item_exercise.view.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
@@ -16,6 +17,10 @@ import sport.tsse.com.sportapp.exercise.list.ExerciseListAdapter.ExerciseViewHol
  */
 class ExerciseListAdapter(val exercises: List<Exercise>,
                           val listener: (Exercise) -> Unit) : RecyclerView.Adapter<ExerciseViewHolder>() {
+
+    companion object {
+
+    }
 
     override fun onBindViewHolder(holder: ExerciseViewHolder?, position: Int) {
         holder?.bind(exercises[position], listener)
@@ -32,6 +37,12 @@ class ExerciseListAdapter(val exercises: List<Exercise>,
         fun bind(exercise: Exercise, listener: (Exercise) -> Unit) = with(itemView) {
             exerciseListItemTitleTextView.text = exercise.name
             exerciseListItemInfoTextView.text = exercise.category
+
+            Glide.with(context)
+                    .asDrawable()
+                    .load(R.drawable.bench_press) // TODO Change to actual URL from the api.
+                    .into(exerciseListItemIconImageView)
+
             setOnClickListener { listener(exercise) }
         }
     }

@@ -3,12 +3,11 @@ package sport.tsse.com.sportapp.exercise.list
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
@@ -20,8 +19,7 @@ import sport.tsse.com.sportapp.network.Api
  *
  * @author Mitchell de Vries
  */
-class ExerciseListFragment : Fragment(), ExerciseListView {
-
+class ExerciseListFragment : Fragment(), ExerciseListView, SearchView.OnQueryTextListener {
     private lateinit var presenter: ExerciseListPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,6 +30,23 @@ class ExerciseListFragment : Fragment(), ExerciseListView {
         super.onViewCreated(view, savedInstanceState)
         presenter = ExerciseListPresenter(this, Api(), context)
         presenter.start()
+
+        setHasOptionsMenu(true)
+        var favoriteOn = false
+
+        fab.setOnClickListener {
+            presenter.loadFavorites(!favoriteOn)
+            favoriteOn = !favoriteOn
+            setFavoriteIcon(favoriteOn)
+        }
+    }
+
+    private fun setFavoriteIcon(favoriteOn: Boolean) {
+        if (favoriteOn) {
+            fab.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_clicked))
+        } else {
+            fab.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite))
+        }
     }
 
     override fun loadExercises(exercises: List<Exercise>) {
@@ -67,4 +82,26 @@ class ExerciseListFragment : Fragment(), ExerciseListView {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_search, menu)
+
+        val searchItem = menu?.findItem(R.id.action_search)
+        val searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+        searchView.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText.isNullOrBlank()) {
+            fab.visibility = View.VISIBLE
+        } else {
+            fab.visibility = View.GONE
+        }
+        presenter.search(newText)
+        return false
+    }
 }

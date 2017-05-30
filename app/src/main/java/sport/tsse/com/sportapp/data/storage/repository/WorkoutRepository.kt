@@ -1,103 +1,83 @@
 package sport.tsse.com.sportapp.data.storage.repository
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
+import org.jetbrains.anko.db.*
 import sport.tsse.com.sportapp.data.Workout
-import sport.tsse.com.sportapp.data.storage.DbCursorWrapper
-import sport.tsse.com.sportapp.data.storage.DbHelper
 import sport.tsse.com.sportapp.data.storage.DbSchema
-import sport.tsse.com.sportapp.data.storage.DbSchema.WorkoutTable
+import sport.tsse.com.sportapp.data.storage.database
 
 /**
  * Created by mitchelldevries on 23/05/2017.
  */
 class WorkoutRepository(context: Context) {
 
-    val database: SQLiteDatabase = DbHelper(context).writableDatabase
-    val exerciseRepository = ExerciseRepository(context)
+    companion object {
 
-    fun findAll(): List<Workout> {
-        val workouts = ArrayList<Workout>()
+        private var instance: WorkoutRepository? = null
 
-        val cursor = queryWorkouts(null, null)
-
-        try {
-            cursor.moveToFirst()
-            while (!cursor.isAfterLast) {
-                val workout = cursor.getWorkout()
-                val exercises = exerciseRepository.findAllForWorkout(workout.id)
-                if (exercises.isNotEmpty()) {
-                    workout.exercises = exercises
-                }
-
-                workouts.add(workout)
-                cursor.moveToNext()
-            }
-        } finally {
-            cursor.close()
-        }
-
-        return workouts
-    }
-
-    fun findOne(id: Int): Workout? {
-        val cursor = queryWorkouts(WorkoutTable.Cols.ID + "=" + id, null) //TODO FIX, Mitchell de Vries
-
-        try {
-            if (cursor.count == 0) {
-                return null
+        @Synchronized
+        fun getInstance(context: Context): WorkoutRepository {
+            if (instance == null) {
+                instance = WorkoutRepository(context)
             }
 
-            cursor.moveToFirst()
-            val workout = cursor.getWorkout()
-            val exercises = exerciseRepository.findAllForWorkout(workout.id)
-            workout.exercises = exercises
-
-            return workout
-        } finally {
-            cursor.close()
+            return instance!!
         }
     }
+
+    val database: SQLiteDatabase = context.database.writableDatabase
+    val exerciseRepository = ExerciseRepository.getInstance(context)
+
+    fun findAll() = queryWorkouts()
+
+    fun findOne(id: Int) = queryWorkout(id)
 
     fun save(workout: Workout) {
-        val values = getValues(workout)
-        database.insert(WorkoutTable.NAME, null, values)
+        database.insert(DbSchema.WorkoutTable.NAME,
+                DbSchema.WorkoutTable.Cols.ID to workout.id,
+                DbSchema.WorkoutTable.Cols.NAME to workout.name,
+                DbSchema.WorkoutTable.Cols.DESCRIPTION to workout.description)
+
+        workout.exercises.forEach {
+            database.insert(DbSchema.WorkoutExerciseTable.NAME,
+                    DbSchema.WorkoutExerciseTable.Cols.WORKOUT_ID to workout.id,
+                    DbSchema.WorkoutExerciseTable.Cols.EXERCISE_ID to it.id
+            )
+        }
+    }
+
+    fun save(workouts: List<Workout>) {
+        workouts.forEach {
+            save(it)
+        }
     }
 
     fun update(workout: Workout) {
-        val values = getValues(workout)
-
-        database.update(WorkoutTable.NAME, values, WorkoutTable.Cols.ID + " = ?",
-                Array(1, { workout.id.toString() }))
+        database.update(DbSchema.WorkoutTable.NAME,
+                DbSchema.WorkoutTable.Cols.NAME to workout.name,
+                DbSchema.WorkoutTable.Cols.DESCRIPTION to workout.description)
+                .where(DbSchema.WorkoutTable.Cols.ID + " = {workoutId}", "workoutId" to workout.id)
+                .exec()
     }
 
     fun delete(id: Int) {
-        database.delete(WorkoutTable.NAME, WorkoutTable.Cols.ID + " = ?",
-                Array(1, { id.toString() }))
+        database.delete(DbSchema.WorkoutTable.NAME,
+                DbSchema.WorkoutTable.Cols.ID + " = {workoutId}", "workoutId" to id)
     }
 
-    private fun getValues(workout: Workout): ContentValues {
-        val values = ContentValues()
-        values.put(WorkoutTable.Cols.ID, workout.id)
-        values.put(WorkoutTable.Cols.NAME, workout.name)
-        values.put(WorkoutTable.Cols.DESCRIPTION, workout.description)
+    private fun queryWorkouts() = database.select(DbSchema.WorkoutTable.NAME).parseList(workoutParser())
 
-        return values
-    }
+    private fun queryWorkout(id: Int)
+            = database
+            .select(DbSchema.WorkoutTable.NAME)
+            .where(DbSchema.WorkoutTable.Cols.ID + " = {workoutId}", "workoutId" to id)
+            .parseOpt(workoutParser())
 
-    private fun queryWorkouts(whereClause: String?, whereArgs: Array<String>?): DbCursorWrapper {
-        val cursor = database.query(
-                DbSchema.WorkoutTable.NAME,
-                null, // Columns - null selects all columns
-                whereClause,
-                whereArgs,
-                null, // Group By
-                null, // Having
-                null    // Order By
-        )
-
-        return DbCursorWrapper(cursor)
+    private fun workoutParser(): RowParser<Workout> {
+        return rowParser {
+            id: Int, name: String, description: String ->
+            Workout(id, name, description, exerciseRepository.findExercisesForWorkout(id))
+        }
     }
 }

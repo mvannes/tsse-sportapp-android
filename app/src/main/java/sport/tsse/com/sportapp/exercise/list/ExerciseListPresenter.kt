@@ -18,33 +18,50 @@ class ExerciseListPresenter(val view: ExerciseListView,
                             val api: Api,
                             val context: Context) : BasePresenter, Callback<List<Exercise>> {
 
-    private val repository = ExerciseRepository(context)
+    private val repository = ExerciseRepository.getInstance(context)
+    private var exercises = emptyList<Exercise>()
 
     override fun start() {
         view.showProgress()
         api.service.getAllExercises().enqueue(this)
 
-        val exercises = repository.findAll()
-        if (!exercises.isEmpty()) {
-            view.loadExercises(exercises)
-            view.hideProgress()
+        exercises = repository.findAll()
+
+        if (exercises.isNotEmpty()) {
+            updateView()
         }
     }
 
     override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
         if (response?.isSuccessful!!) {
-            val exercises = response.body()
-            for (exercise in exercises) {
-                repository.save(exercise)
-            }
-            view.loadExercises(repository.findAll())
-            view.hideProgress()
+            exercises = response.body()
+            repository.save(exercises)
         }
+        updateView()
     }
 
     override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
-        view.hideProgress()
+        updateView()
         view.showError("Error occurred while fetching new data: " + t?.message!! + ".")
     }
 
+    private fun updateView() {
+        view.hideProgress()
+        view.loadExercises(exercises)
+    }
+
+    fun loadFavorites(favorite: Boolean) {
+        if (favorite) {
+            view.loadExercises(repository.findAll().filter { it.favorite != 0 })
+        } else {
+            view.loadExercises(exercises)
+        }
+    }
+
+    fun search(query: String?) {
+        if (query.isNullOrBlank()) {
+            view.loadExercises(exercises)
+        }
+        view.loadExercises(exercises.filter { it.name.toLowerCase().contains(query?.toLowerCase().toString()) })
+    }
 }
