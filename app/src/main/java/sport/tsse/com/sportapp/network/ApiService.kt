@@ -28,4 +28,7 @@ interface ApiService {
 
     @GET("workouts")
     fun getAllWorkouts(): Call<List<Workout>>
+
+    @GET("users")
+    fun getAllUsers(): Call<List<User>>
 }

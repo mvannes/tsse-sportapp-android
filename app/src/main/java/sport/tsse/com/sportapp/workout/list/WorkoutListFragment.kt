@@ -35,7 +35,6 @@ class WorkoutListFragment : Fragment(), WorkoutListView {
         presenter = WorkoutListPresenter(this, Api(), context)
         presenter.start()
 
-        fab.setOnClickListener { startAddWorkoutActivity() }
     }
 
     override fun loadWorkouts(workouts: List<Workout>) {

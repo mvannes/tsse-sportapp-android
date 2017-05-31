@@ -3,8 +3,8 @@
     package="sport.tsse.com.sportapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -68,6 +68,17 @@
             android:label="Detail Workout"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:label="Chat"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/SettingsTheme"
+            android:parentActivityName=".base.SingleFragmentNavigationActivity"
+            />
     </application>
 
 </manifest>
