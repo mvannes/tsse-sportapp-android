@@ -1,4 +1,4 @@
-package sport.tsse.com.sportapp
+package sport.tsse.com.sportapp.base
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -8,10 +8,11 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_navigation.*
+import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.exercise.list.ExerciseListFragment
 import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.schedule.list.ScheduleListFragment
-import sport.tsse.com.sportapp.schedule.list.ScheduleListPresenter
+import sport.tsse.com.sportapp.workout.list.WorkoutListFragment
 
 class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,12 +52,15 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
                 replaceFragment(ScheduleListFragment(), getString(R.string.schedules))
             }
             R.id.nav_workouts -> {
-//                replaceFragment(WorkoutListFragment(), getString(R.string.workouts))
+                replaceFragment(WorkoutListFragment(), getString(R.string.workouts))
             }
             R.id.nav_exercises -> {
                 replaceFragment(ExerciseListFragment(), getString(R.string.exercises))
             }
-            R.id.nav_statistics -> {
+            R.id.nav_chat -> {
+//            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
+            }
+            R.id.nav_buddies -> {
 //            replaceFragment(StatisticsFragment(), getString(R.string.statistics))
             }
             R.id.nav_settings -> {

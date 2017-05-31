@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SportApp</string>
+    <string name="app_name">Gainr</string>
     <string name="title_activity_register">RegisterActivity</string>
 
     <!--Onboarding Strings-->
@@ -16,10 +16,11 @@
     <string name="validate_name_error_message">Can\'t be empty!</string>
     <string name="validate_password_error_message">6 to 20 characters  with at least one digit, one upper case letter, one lower case letter and one special symbol</string>
     <string name="onboarding_continue">Continue </string>
+    <string name="onboarding_completed_title">Registration completed!</string>
 
     <!--Forgot Password Strings-->
     <string name="forgot_your_password">Forgot your password?</string>
-    <string name="forgot_password_info">Enter your email below to receive your  password reset instructions.</string>
+    <string name="forgot_password_info">Enter your email below to receive your password reset instructions.</string>
     <string name="forgot_password_underlined"><u>forgot password</u></string>
     <string name="email">Email</string>
     <string name="reset_password">Reset Password</string>
@@ -63,6 +64,13 @@
     <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
-    <string name="onboarding_completed_title">Registration completed!</string>
+
+    <string name="chat">Chat</string>
+    <string name="buddies">Buddies</string>
+    <string name="title_add_workout">Add Workout</string>
+    <string name="title_workout_details">Workout Details</string>
+    <string name="title_exercise_details">Exercise Details</string>
+    <string name="title_placeholder">Title</string>
+    <string name="category_placeholder">Category</string>
 
 </resources>

@@ -1,19 +1,17 @@
 package sport.tsse.com.sportapp.exercise.list
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Exercise
-import sport.tsse.com.sportapp.exercise.ExercisePresenter
-import sport.tsse.com.sportapp.exercise.ExerciseView
 import sport.tsse.com.sportapp.exercise.detail.ExerciseDetailActivity
 import sport.tsse.com.sportapp.network.Api
 
@@ -22,45 +20,9 @@ import sport.tsse.com.sportapp.network.Api
  *
  * @author Mitchell de Vries
  */
-class ExerciseListFragment : Fragment(), ExerciseView {
+class ExerciseListFragment : Fragment(), ExerciseListView {
 
-    private lateinit var presenter: ExercisePresenter
-
-    override fun showProgress() {
-        exerciseListProgress.visibility = View.VISIBLE
-        exerciseListRecyclerView.visibility = View.GONE
-    }
-
-    override fun hideProgress() {
-        exerciseListProgress.visibility = View.GONE
-        exerciseListRecyclerView.visibility = View.VISIBLE
-    }
-
-    override fun showError(errorMessage: String) {
-        AlertDialog.Builder(context)
-                .setTitle("Error")
-                .setMessage(errorMessage)
-                .setPositiveButton(android.R.string.ok, null)
-                .create()
-                .show()
-    }
-
-    override fun setExercises(exercises: List<Exercise>) {
-        exerciseListRecyclerView.apply {
-            setHasFixedSize(true)
-            val linearLayoutManager = LinearLayoutManager(context)
-            layoutManager = linearLayoutManager
-            adapter = ExerciseAdapter(exercises) {
-                startActivity(Intent(context, ExerciseDetailActivity::class.java))
-            }
-        }
-    }
-
-    override fun showExercise(exercise: Exercise) {
-        val intent = Intent(context, ExerciseDetailActivity::class.java)
-        intent.putExtra("exercise", exercise)
-        startActivity(intent)
-    }
+    private lateinit var presenter: ExerciseListPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_exercise_list, container, false)
@@ -68,8 +30,41 @@ class ExerciseListFragment : Fragment(), ExerciseView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = ExercisePresenter(this, Api())
+        presenter = ExerciseListPresenter(this, Api(), context)
         presenter.start()
+    }
+
+    override fun loadExercises(exercises: List<Exercise>) {
+        exerciseListRecyclerView.apply {
+            setHasFixedSize(true)
+            val linearLayoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
+            adapter = ExerciseListAdapter(exercises) {
+                startActivity(ExerciseDetailActivity.newIntent(context, it.id))
+                val c = context as AppCompatActivity
+                c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+        }
+    }
+
+    override fun showProgress() {
+        if (isAdded) {
+            exerciseListProgress.visibility = View.VISIBLE
+            exerciseListRecyclerView.visibility = View.GONE
+        }
+    }
+
+    override fun hideProgress() {
+        if (isAdded) {
+            exerciseListProgress.visibility = View.GONE
+            exerciseListRecyclerView.visibility = View.VISIBLE
+        }
+    }
+
+    override fun showError(errorMessage: String) {
+        if (isAdded) {
+            Snackbar.make(view!!, errorMessage, Snackbar.LENGTH_LONG).show()
+        }
     }
 
 }
