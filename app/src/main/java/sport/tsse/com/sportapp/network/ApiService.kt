@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.data.Schedule
+import sport.tsse.com.sportapp.data.User
 import sport.tsse.com.sportapp.data.Workout
 
 /**
@@ -21,4 +22,7 @@ interface ApiService {
 
     @GET("workouts")
     fun getAllWorkouts(): Call<List<Workout>>
+
+    @GET("users")
+    fun getAllUsers(): Call<List<User>>
 }
