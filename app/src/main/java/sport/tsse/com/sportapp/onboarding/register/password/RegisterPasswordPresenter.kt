@@ -3,7 +3,7 @@ package sport.tsse.com.sportapp.onboarding.register.password
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sport.tsse.com.sportapp.Presenter
+import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.User
 import sport.tsse.com.sportapp.network.Api
 import java.util.regex.Pattern
@@ -16,7 +16,7 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
                                 private val api: Api,
                                 private val user: User,
                                 private val password: String
-) : Presenter, Callback<User> {
+) : BasePresenter, Callback<User> {
 
     override fun start() {
         validate()

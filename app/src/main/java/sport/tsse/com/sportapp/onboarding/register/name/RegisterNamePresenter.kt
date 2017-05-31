@@ -1,6 +1,6 @@
 package sport.tsse.com.sportapp.onboarding.register.name
 
-import sport.tsse.com.sportapp.Presenter
+import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.User
 
 
@@ -11,7 +11,7 @@ class RegisterNamePresenter(private val view: RegisterNameView,
                             private val user: User,
                             private val firstName: String,
                             private val lastName: String
-) : Presenter {
+) : BasePresenter {
 
     override fun start() {
         validate()

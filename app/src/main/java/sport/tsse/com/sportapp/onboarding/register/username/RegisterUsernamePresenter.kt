@@ -1,7 +1,7 @@
 package sport.tsse.com.sportapp.onboarding.register.username
 
 import android.util.Patterns
-import sport.tsse.com.sportapp.Presenter
+import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.User
 
 
@@ -11,7 +11,7 @@ import sport.tsse.com.sportapp.data.User
 class RegisterUsernamePresenter(private val view: RegisterUsernameView,
                                 private val user: User,
                                 private val input: String
-) : Presenter {
+) : BasePresenter {
 
     override fun start() {
         validate(input)
