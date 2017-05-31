@@ -1,6 +1,7 @@
 package sport.tsse.com.sportapp.network
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import sport.tsse.com.sportapp.data.Exercise
@@ -24,5 +25,5 @@ interface ApiService {
     fun getAllSchedules(): Call<List<Schedule>>
 
     @POST("users")
-    fun saveUser(user: User): Call<User>
+    fun saveUser(@Body user: User): Call<User>
 }

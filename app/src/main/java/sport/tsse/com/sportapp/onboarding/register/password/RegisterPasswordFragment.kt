@@ -6,11 +6,14 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_onboarding_password_input.*
 import kotlinx.android.synthetic.main.onboarding_fab.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.User
 import sport.tsse.com.sportapp.network.Api
+import sport.tsse.com.sportapp.onboarding.register.completed.RegistrationCompletedFragment
+
 
 /**
  * Created by mohammedali on 09/03/2017.
@@ -18,7 +21,7 @@ import sport.tsse.com.sportapp.network.Api
 
 class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
 
-    private val ARG_USER: String? = "sport.tsse.com.sportapp.onboarding.register.password.RegisterPasswordFragment.user"
+    private val ARG_USER: String = "sport.tsse.com.sportapp.onboarding.register.password.RegisterPasswordFragment.user"
 
     lateinit private var presenter: RegisterPasswordPresenter
 
@@ -40,8 +43,7 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
         super.onViewCreated(view, savedInstanceState)
 
         fab.setOnClickListener {
-            presenter = RegisterPasswordPresenter(this,
-                    Api(),
+            presenter = RegisterPasswordPresenter(this, Api(),
                     arguments?.getSerializable(ARG_USER) as User,
                     passwordWrapper?.editText!!.text.toString())
             presenter.start()
@@ -61,11 +63,18 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
     }
 
     override fun showProgress() {
-        progressBar.visibility = View.VISIBLE
+        activity.window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+        fab.visibility = View.GONE
         registerPasswordLayout.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
+        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+        fab.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
         registerPasswordLayout.visibility = View.VISIBLE
     }
@@ -80,5 +89,15 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
     }
 
     override fun goToRegistrationCompletedFragment() {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.anim.enter_from_right_onboarding,
+                        R.anim.exit_to_left_onboarding,
+                        R.anim.enter_from_left_onboarding,
+                        R.anim.exit_to_right_onboarding
+                )
+                .replace(R.id.fragmentContainer, RegistrationCompletedFragment())
+                .addToBackStack(null)
+                .commit()
     }
 }

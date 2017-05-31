@@ -83,10 +83,10 @@
                 android:ems="10"
                 android:gravity="start"
                 android:inputType="textEmailAddress"
-                android:textAlignment="textStart"
+            android:hint="@string/onboarding_email_hint"
+            android:textAlignment="textStart"
                 android:textColor="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
-        <!--android:hint="@string/onboarding_email_hint"-->
 
     </android.support.constraint.ConstraintLayout>
 

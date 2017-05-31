@@ -35,7 +35,7 @@ class ExercisePresenter(val view: ExerciseView, val api: Api): Presenter,  Callb
 
     override fun onResponse(call: Call<List<Exercise>>?, response: Response<List<Exercise>>?) {
         if (response?.isSuccessful!!) {
-            onSuccess(response.body())
+            onSuccess(response.body()!!)
         }
     }
 

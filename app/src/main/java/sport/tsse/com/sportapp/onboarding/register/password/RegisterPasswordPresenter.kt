@@ -6,6 +6,7 @@ import retrofit2.Response
 import sport.tsse.com.sportapp.Presenter
 import sport.tsse.com.sportapp.data.User
 import sport.tsse.com.sportapp.network.Api
+import java.util.regex.Pattern
 
 
 /**
@@ -23,34 +24,34 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
 
     private fun validate() {
         if (view.performPasswordCheck(allowSubmission(password))) {
-            user.password = password
             view.showProgress()
+            user.password = password
             api.service.saveUser(user).enqueue(this)
         }
     }
 
     private fun allowSubmission(password: String): Boolean {
-        return password.length > 7
+        return strongPassword(password)
     }
 
-    private fun onSuccess() {
-        view.hideProgress()
-        view.goToRegistrationCompletedFragment()
+    fun strongPassword(pass: String): Boolean {
+        val expression = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
+        val patron = Pattern.compile(expression)
+        val m = patron.matcher(pass)
+        if (m.find())
+            return true
+        return false
     }
 
     override fun onResponse(call: Call<User>?, response: Response<User>?) {
         if (response?.isSuccessful!!) {
-            onSuccess()
+            view.hideProgress()
+            view.goToRegistrationCompletedFragment()
         }
     }
 
     override fun onFailure(call: Call<User>?, t: Throwable?) {
-        onFailure(t!!)
-    }
-
-    private fun onFailure(t: Throwable) {
         view.hideProgress()
-        view.showError(t.message!!)
+        view.showError(t?.message!!)
     }
-
 }

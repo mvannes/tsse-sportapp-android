@@ -18,7 +18,7 @@ import sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthdateFr
 
 class RegisterNameFragment : Fragment(), RegisterNameView {
 
-    private val ARG_USER: String? = "sport.tsse.com.sportapp.onboarding.register.name.RegisterNameFragment.user"
+    private val ARG_USER: String = "sport.tsse.com.sportapp.onboarding.register.name.RegisterNameFragment.user"
 
     lateinit private var presenter: RegisterNamePresenter
 
@@ -40,7 +40,8 @@ class RegisterNameFragment : Fragment(), RegisterNameView {
         super.onViewCreated(view, savedInstanceState)
 
         fab.setOnClickListener {
-            presenter = RegisterNamePresenter(this, arguments?.getSerializable(ARG_USER) as User,
+            presenter = RegisterNamePresenter(this,
+                    arguments?.getSerializable(ARG_USER) as User,
                     firstNameWrapper?.editText!!.text.toString(),
                     lastNameWrapper?.editText!!.text.toString())
             presenter.start()

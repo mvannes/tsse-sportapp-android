@@ -19,7 +19,7 @@ import java.util.*
 
 class RegisterBirthdateFragment : Fragment(), RegisterBirthdateView {
 
-    private val ARG_USER: String? = "sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthdateFragment.user"
+    private val ARG_USER: String = "sport.tsse.com.sportapp.onboarding.register.birthdate.RegisterBirthdateFragment.user"
 
     lateinit private var presenter: RegisterBirthdatePresenter
     private var calendar = Calendar.getInstance()

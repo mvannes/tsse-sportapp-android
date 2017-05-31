@@ -10,7 +10,8 @@ import sport.tsse.com.sportapp.data.User
  */
 class RegisterUsernamePresenter(private val view: RegisterUsernameView,
                                 private val user: User,
-                                private val input: String) : Presenter {
+                                private val input: String
+) : Presenter {
 
     override fun start() {
         validate(input)
@@ -23,7 +24,7 @@ class RegisterUsernamePresenter(private val view: RegisterUsernameView,
         }
     }
 
-   private fun looksLikeValidEmail(arg: String): Boolean {
+    private fun looksLikeValidEmail(arg: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(arg).matches()
     }
 }

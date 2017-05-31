@@ -25,7 +25,7 @@ class ScheduleListPresenter(private val view: ScheduleListView, private val api:
     override fun onResponse(call: Call<List<Schedule>>?, response: Response<List<Schedule>>?) {
         if (response!!.isSuccessful) {
             var schedules = response.body()
-            view.populateView(schedules)
+            view.populateView(schedules!!)
         }
     }
 
