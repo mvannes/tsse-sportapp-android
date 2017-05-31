@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
+    <item name="please_wait" type="id">Please wait...</item>
+    <item name="onboarding_post_message" type="id">Creating your account</item>
+</resources>

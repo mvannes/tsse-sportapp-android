@@ -4,15 +4,19 @@
 
     <!--Onboarding Strings-->
     <string name="onboarding_email_text">What\'s your email address?</string>
-    <string name="onboarding_email_hint">name@example.com</string>
+    <string name="onboarding_email_hint">Email</string>
     <string name="onboarding_name_text">What\'s your name?</string>
-    <string name="onboarding_name_hint">\"John Cena\"</string>
     <string name="onboarding_password_text">Create your account password</string>
     <string name="onboarding_last_name_hint">Last</string>
     <string name="onboarding_first_name_hint">First</string>
     <string name="onboarding_date_picker_title">Wat\'s your birthdate</string>
     <string name="onboarding_birthdate_text">What\'s your birthdate?</string>
     <string name="onboarding_password_hint">Password</string>
+    <string name="validate_email_error_message">Not a valid email address!</string>
+    <string name="validate_name_error_message">Can\'t be empty!</string>
+    <string name="validate_password_error_message">6 to 20 characters  with at least one digit, one upper case letter, one lower case letter and one special symbol</string>
+    <string name="onboarding_continue">Continue </string>
+    <string name="onboarding_completed_title">Registration completed!</string>
 
     <!--Forgot Password Strings-->
     <string name="forgot_your_password">Forgot your password?</string>
@@ -60,6 +64,7 @@
     <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
+
     <string name="chat">Chat</string>
     <string name="buddies">Buddies</string>
     <string name="title_add_workout">Add Workout</string>
@@ -67,4 +72,5 @@
     <string name="title_exercise_details">Exercise Details</string>
     <string name="title_placeholder">Title</string>
     <string name="category_placeholder">Category</string>
+
 </resources>

@@ -1,10 +1,14 @@
 package sport.tsse.com.sportapp.network
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.data.Schedule
+import sport.tsse.com.sportapp.data.User
 import sport.tsse.com.sportapp.data.Workout
+
 
 /**
  * tsse-sportapp-android
@@ -18,6 +22,9 @@ interface ApiService {
 
     @GET("schedule")
     fun getAllSchedules(): Call<List<Schedule>>
+
+    @POST("users")
+    fun saveUser(@Body user: User): Call<User>
 
     @GET("workouts")
     fun getAllWorkouts(): Call<List<Workout>>
