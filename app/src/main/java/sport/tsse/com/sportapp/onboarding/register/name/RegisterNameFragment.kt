@@ -40,7 +40,8 @@ class RegisterNameFragment : Fragment(), RegisterNameView {
         super.onViewCreated(view, savedInstanceState)
 
         fab.setOnClickListener {
-            presenter = RegisterNamePresenter(this,
+            presenter = RegisterNamePresenter(
+                    this,
                     arguments?.getSerializable(ARG_USER) as User,
                     firstNameWrapper?.editText!!.text.toString(),
                     lastNameWrapper?.editText!!.text.toString())
@@ -79,8 +80,7 @@ class RegisterNameFragment : Fragment(), RegisterNameView {
                         R.anim.exit_to_left_onboarding,
                         R.anim.enter_from_left_onboarding,
                         R.anim.exit_to_right_onboarding
-                )
-                .replace(R.id.fragmentContainer, RegisterBirthdateFragment().newInstance(user))
+                ).replace(R.id.fragmentContainer, RegisterBirthdateFragment().newInstance(user))
                 .addToBackStack(null)
                 .commit()
     }

@@ -2,7 +2,6 @@ package sport.tsse.com.sportapp.onboarding.register.birthdate
 
 import sport.tsse.com.sportapp.Presenter
 import sport.tsse.com.sportapp.data.User
-import java.util.*
 
 
 /**
@@ -10,11 +9,12 @@ import java.util.*
  */
 class RegisterBirthdatePresenter(private val view: RegisterBirthdateView,
                                  private val user: User,
-                                 private val calendar: Calendar
+                                 private val birthdate: java.util.Date
 ) : Presenter {
 
     override fun start() {
-        user.birthdate = calendar.time
+        user.birthdate = birthdate.time
+        user.displayName = user.firstName
         view.gotoRegisterPasswordFragment(user)
     }
 }

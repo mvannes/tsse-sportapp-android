@@ -49,8 +49,7 @@ class RegisterUsernameFragment : Fragment(), RegisterUsernameView {
                         R.anim.exit_to_left_onboarding,
                         R.anim.enter_from_left_onboarding,
                         R.anim.exit_to_right_onboarding
-                )
-                .replace(R.id.fragmentContainer, RegisterNameFragment().newInstance(user))
+                ).replace(R.id.fragmentContainer, RegisterNameFragment().newInstance(user))
                 .addToBackStack(null)
                 .commit()
     }

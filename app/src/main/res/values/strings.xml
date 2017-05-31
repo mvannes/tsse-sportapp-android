@@ -15,6 +15,7 @@
     <string name="validate_email_error_message">Not a valid email address!</string>
     <string name="validate_name_error_message">Can\'t be empty!</string>
     <string name="validate_password_error_message">6 to 20 characters  with at least one digit, one upper case letter, one lower case letter and one special symbol</string>
+    <string name="onboarding_continue">Continue </string>
 
     <!--Forgot Password Strings-->
     <string name="forgot_your_password">Forgot your password?</string>
@@ -62,5 +63,6 @@
     <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
+    <string name="onboarding_completed_title">Registration completed!</string>
 
 </resources>

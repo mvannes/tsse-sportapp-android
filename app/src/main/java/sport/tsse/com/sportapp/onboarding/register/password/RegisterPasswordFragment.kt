@@ -1,12 +1,13 @@
 package sport.tsse.com.sportapp.onboarding.register.password
 
+import android.app.ProgressDialog
+import android.app.ProgressDialog.STYLE_SPINNER
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_onboarding_password_input.*
 import kotlinx.android.synthetic.main.onboarding_fab.*
 import sport.tsse.com.sportapp.R
@@ -24,6 +25,7 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
     private val ARG_USER: String = "sport.tsse.com.sportapp.onboarding.register.password.RegisterPasswordFragment.user"
 
     lateinit private var presenter: RegisterPasswordPresenter
+    lateinit private var progressDialog: ProgressDialog
 
     fun newInstance(newUser: User): RegisterPasswordFragment {
         val registerPasswordFragment = RegisterPasswordFragment()
@@ -42,10 +44,15 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressDialog = ProgressDialog(activity)
+
         fab.setOnClickListener {
-            presenter = RegisterPasswordPresenter(this, Api(),
+            presenter = RegisterPasswordPresenter(
+                    this,
+                    Api(),
                     arguments?.getSerializable(ARG_USER) as User,
-                    passwordWrapper?.editText!!.text.toString())
+                    passwordWrapper?.editText!!.text.toString()
+            )
             presenter.start()
         }
     }
@@ -63,20 +70,15 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
     }
 
     override fun showProgress() {
-        activity.window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-        fab.visibility = View.GONE
-        registerPasswordLayout.visibility = View.GONE
-        progressBar.visibility = View.VISIBLE
+        progressDialog.setCancelable(false)
+        progressDialog.setProgressStyle(STYLE_SPINNER)
+        progressDialog.setTitle(resources.getString(R.id.please_wait))
+        progressDialog.setMessage(resources.getString(R.id.onboarding_post_message))
+        progressDialog.show()
     }
 
     override fun hideProgress() {
-        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-        fab.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE
-        registerPasswordLayout.visibility = View.VISIBLE
+        progressDialog.hide()
     }
 
     override fun showError(errorMessage: String) {
@@ -95,8 +97,7 @@ class RegisterPasswordFragment : Fragment(), RegisterPasswordView {
                         R.anim.exit_to_left_onboarding,
                         R.anim.enter_from_left_onboarding,
                         R.anim.exit_to_right_onboarding
-                )
-                .replace(R.id.fragmentContainer, RegistrationCompletedFragment())
+                ).replace(R.id.fragmentContainer, RegistrationCompletedFragment())
                 .addToBackStack(null)
                 .commit()
     }

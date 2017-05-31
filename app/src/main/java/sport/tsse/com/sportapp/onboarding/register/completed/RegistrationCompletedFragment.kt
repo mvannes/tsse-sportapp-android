@@ -3,6 +3,7 @@ package sport.tsse.com.sportapp.onboarding.register.completed
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,10 @@ class RegistrationCompletedFragment : Fragment(), RegistrationCompletedView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val actionbar = context as AppCompatActivity
+        actionbar.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+
         presenter = RegistrationCompletedPresenter(this)
         presenter.start()
     }
@@ -29,7 +34,7 @@ class RegistrationCompletedFragment : Fragment(), RegistrationCompletedView {
     override fun goToHome() {
         continueButton.setOnClickListener {
             val intent = Intent(activity, SingleFragmentNavigationActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

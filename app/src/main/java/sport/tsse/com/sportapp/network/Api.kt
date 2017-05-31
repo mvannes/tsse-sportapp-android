@@ -2,7 +2,6 @@ package sport.tsse.com.sportapp.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
  * tsse-sportapp-android
@@ -15,7 +14,7 @@ class Api {
 
     init {
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.178.68:8080/api/")
+                .baseUrl("http://145.28.197.136:8080/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 

@@ -47,6 +47,9 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
         if (response?.isSuccessful!!) {
             view.hideProgress()
             view.goToRegistrationCompletedFragment()
+        } else {
+            view.hideProgress()
+            view.showError(response.message().plus("Your email address is already being used!"))
         }
     }
 
