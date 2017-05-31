@@ -9,5 +9,6 @@
     <color name="grey">#EDEDED</color>
     <color name="greyLight">#F1F1F1</color>
     <color name="titleText">#3C3B3A</color>
+    <color name="cursorAccent">#FFFFFF</color>
 
 </resources>

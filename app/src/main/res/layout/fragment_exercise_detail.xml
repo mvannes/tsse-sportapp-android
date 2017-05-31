@@ -19,6 +19,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/detailImage"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
                 android:src="@drawable/bench_press" />
@@ -57,12 +58,13 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/detailFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_favorite_grey" />
+                    android:src="@drawable/ic_favorite" />
             </RelativeLayout>
 
         </LinearLayout>

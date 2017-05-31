@@ -16,7 +16,8 @@ class DbSchema {
                 val NAME = "name"
                 val DESCRIPTION = "description"
                 val CATEGORY = "category"
-                val WORKOUT_ID = "workout_id"
+                val FAVORITE = "favorite"
+                val IMAGE_URL = "img_url"
             }
         }
     }
@@ -31,7 +32,20 @@ class DbSchema {
                 val ID = "id"
                 val NAME = "name"
                 val DESCRIPTION = "description"
-                val CATEGORY = "category"
+            }
+        }
+    }
+
+    class WorkoutExerciseTable {
+        companion object {
+            val NAME = "workout_exercises"
+        }
+
+        class Cols {
+            companion object {
+                val ID = "id"
+                val WORKOUT_ID = "workout_id"
+                val EXERCISE_ID = "exercise_id"
             }
         }
     }
