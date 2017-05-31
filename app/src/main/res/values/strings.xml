@@ -4,15 +4,19 @@
 
     <!--Onboarding Strings-->
     <string name="onboarding_email_text">What\'s your email address?</string>
-    <string name="onboarding_email_hint">name@example.com</string>
+    <string name="onboarding_email_hint">Email</string>
     <string name="onboarding_name_text">What\'s your name?</string>
-    <string name="onboarding_name_hint">\"John Cena\"</string>
     <string name="onboarding_password_text">Create your account password</string>
     <string name="onboarding_last_name_hint">Last</string>
     <string name="onboarding_first_name_hint">First</string>
     <string name="onboarding_date_picker_title">Wat\'s your birthdate</string>
     <string name="onboarding_birthdate_text">What\'s your birthdate?</string>
     <string name="onboarding_password_hint">Password</string>
+    <string name="validate_email_error_message">Not a valid email address!</string>
+    <string name="validate_name_error_message">Can\'t be empty!</string>
+    <string name="validate_password_error_message">6 to 20 characters  with at least one digit, one upper case letter, one lower case letter and one special symbol</string>
+    <string name="onboarding_continue">Continue </string>
+    <string name="onboarding_completed_title">Registration completed!</string>
 
     <!--Forgot Password Strings-->
     <string name="forgot_your_password">Forgot your password?</string>
@@ -40,7 +44,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-  <!--Other Strings-->
+    <!--Other Strings-->
     <string name="exercise_instruction_mock">1. Lie back on a sturdy bench and grasp a bar with an overhand grip (slightly wider than shoulder width). Feet should be flat on the floor and back arched.\n\n2. Dismount the bar from the rack and lower the weight until it touches your middle chest.\n\n3. Press the bar upward until arms are fully extended (focus on using the chest muscles throughout the movement).\n\n4. Slowly lower bar back down to chest and repeat for desired repetitions.</string>
     <string name="bench_description_hint">The bench press is a fundamental movement for developing upper body strength and an attention grabbing physique. It not only trains your chest, but gives the front shoulders, triceps and back a solid workout too.</string>
     <string name="description">Description</string>
@@ -60,6 +64,7 @@
     <string name="weekly_trainings">Training moments per Week (ex. 3)</string>
     <string name="schedule_description">Schedule description</string>
     <string name="workout_name">Workout name</string>
+
     <string name="chat">Chat</string>
     <string name="buddies">Buddies</string>
     <string name="title_add_workout">Add Workout</string>
