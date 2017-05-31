@@ -1,15 +1,12 @@
 package sport.tsse.com.sportapp.data.storage.repository
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import org.jetbrains.anko.db.RowParser
-import org.jetbrains.anko.db.rowParser
-import org.jetbrains.anko.db.select
+import android.util.Log
+import org.jetbrains.anko.db.*
 import sport.tsse.com.sportapp.data.Exercise
-import sport.tsse.com.sportapp.data.storage.DbCursorWrapper
+import sport.tsse.com.sportapp.data.storage.DbSchema
 import sport.tsse.com.sportapp.data.storage.DbSchema.ExerciseTable
-import sport.tsse.com.sportapp.data.storage.SQLiteCursorFactory
 import sport.tsse.com.sportapp.data.storage.database
 
 /**
@@ -19,42 +16,69 @@ import sport.tsse.com.sportapp.data.storage.database
  */
 class ExerciseRepository(context: Context) {
 
+    companion object {
+
+        private var instance: ExerciseRepository? = null
+
+        @Synchronized
+        fun getInstance(context: Context): ExerciseRepository {
+            if (instance == null) {
+                instance = ExerciseRepository(context)
+            }
+
+            return instance!!
+        }
+    }
+
     val database: SQLiteDatabase = context.database.writableDatabase
 
     fun findAll() = queryExercises()
 
-    fun findAllForWorkout(id: Int) = queryExercises()
-
     fun findOne(id: Int) = queryExercise(id)
 
     fun save(exercise: Exercise) {
-        val values = getValues(exercise)
-        database.insert(ExerciseTable.NAME, null, values)
+        database.insert(ExerciseTable.NAME,
+                ExerciseTable.Cols.ID to exercise.id,
+                ExerciseTable.Cols.NAME to exercise.name,
+                ExerciseTable.Cols.DESCRIPTION to exercise.description,
+                ExerciseTable.Cols.CATEGORY to exercise.category,
+                ExerciseTable.Cols.FAVORITE to exercise.favorite,
+                ExerciseTable.Cols.IMAGE_URL to exercise.imageUrl
+        )
+    }
+
+    fun save(exercises: List<Exercise>) {
+        exercises.forEach {
+            save(it)
+        }
     }
 
     fun update(exercise: Exercise) {
-        val values = getValues(exercise)
-
-        database.update(ExerciseTable.NAME, values, ExerciseTable.Cols.ID + " =?",
-                arrayOf(exercise.id.toString()))
+        Log.d("TAG update():", exercise.toString())
+        database.update(ExerciseTable.NAME,
+                ExerciseTable.Cols.NAME to exercise.name,
+                ExerciseTable.Cols.DESCRIPTION to exercise.description,
+                ExerciseTable.Cols.CATEGORY to exercise.category,
+                ExerciseTable.Cols.FAVORITE to exercise.favorite,
+                ExerciseTable.Cols.IMAGE_URL to exercise.imageUrl)
+                .where(ExerciseTable.Cols.ID + " = {exerciseId}", "exerciseId" to exercise.id)
+                .exec()
     }
 
     fun delete(id: Int) {
-        database.delete(ExerciseTable.NAME, ExerciseTable.Cols.ID + " =?",
-                Array(1, { id.toString() }))
+        database.delete(ExerciseTable.NAME,
+                ExerciseTable.Cols.ID + " = {exerciseId}", "exerciseId" to id)
     }
 
-    fun isEmpty(): Boolean = findAll().isEmpty()
+    fun findExercisesForWorkout(id: Int)
+            = database.rawQuery("SELECT e.id, e.name, e.description, e.category " +
+            "FROM " + DbSchema.ExerciseTable.NAME + " e " +
+            "LEFT JOIN " + DbSchema.WorkoutExerciseTable.NAME + " we ON " +
+            "we." + DbSchema.WorkoutExerciseTable.Cols.EXERCISE_ID + " = " +
+            "e." + DbSchema.ExerciseTable.Cols.ID +
+            " WHERE we." + DbSchema.WorkoutExerciseTable.Cols.WORKOUT_ID + " = " + id, null
+    ).parseList(exerciseParser())
 
-    private fun getValues(exercise: Exercise): ContentValues {
-        val values = ContentValues()
-        values.put(ExerciseTable.Cols.ID, exercise.id)
-        values.put(ExerciseTable.Cols.NAME, exercise.name)
-        values.put(ExerciseTable.Cols.DESCRIPTION, exercise.description)
-        values.put(ExerciseTable.Cols.CATEGORY, exercise.category)
-
-        return values
-    }
 
     private fun queryExercises() = database.select(ExerciseTable.NAME).parseList(exerciseParser())
 
@@ -66,8 +90,8 @@ class ExerciseRepository(context: Context) {
 
     private fun exerciseParser(): RowParser<Exercise> {
         return rowParser {
-            id: Int, name: String, description: String, category: String, workoutId: Int? ->
-            Exercise(id, name, description, category)
+            id: Int, name: String, description: String, category: String, favorite: Int, imgUrl: String? ->
+            Exercise(id, name, description, category, favorite, imgUrl)
         }
     }
 }

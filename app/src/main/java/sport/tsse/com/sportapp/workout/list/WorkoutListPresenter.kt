@@ -19,32 +19,34 @@ class WorkoutListPresenter(val view: WorkoutListView,
                            val context: Context) : BasePresenter, Callback<List<Workout>> {
 
     val repository = WorkoutRepository(context)
+    var workouts = emptyList<Workout>()
 
     override fun start() {
         view.showProgress()
         api.service.getAllWorkouts().enqueue(this)
 
-        val workouts = repository.findAll()
-        if (!workouts.isEmpty()) {
-            view.hideProgress()
-            view.loadWorkouts(workouts)
+        workouts = repository.findAll()
+
+        if (workouts.isNotEmpty()) {
+            updateView()
         }
     }
 
     override fun onResponse(call: Call<List<Workout>>?, response: Response<List<Workout>>?) {
         if (response?.isSuccessful!!) {
-            val workouts = response.body()
-            for (workout in workouts) {
-                repository.save(workout)
-            }
-            view.loadWorkouts(repository.findAll())
-            view.hideProgress()
+            workouts = response.body()
+            repository.save(workouts)
         }
+        updateView()
     }
 
     override fun onFailure(call: Call<List<Workout>>?, t: Throwable?) {
-        view.hideProgress()
+        updateView()
         view.showError("Error occurred while fetching new data: " + t?.message!!)
     }
 
+    private fun updateView() {
+        view.hideProgress()
+        view.loadWorkouts(workouts)
+    }
 }

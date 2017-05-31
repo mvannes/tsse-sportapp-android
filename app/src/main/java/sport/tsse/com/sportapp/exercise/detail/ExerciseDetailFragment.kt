@@ -5,13 +5,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_exercise_detail.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.storage.repository.ExerciseRepository
 
 /**
- * Created by mitchelldevries on 28/05/2017.
- */
+* tsse-sportapp-android
+*
+* @author Mitchell de Vries
+*/
 class ExerciseDetailFragment : Fragment() {
 
     companion object {
@@ -38,8 +41,34 @@ class ExerciseDetailFragment : Fragment() {
         val repository = ExerciseRepository(context)
         val exercise = repository.findOne(id)
 
+        Glide.with(context)
+                .asDrawable()
+                .load(R.drawable.bench_press) // TODO Change to actual URL from the api.
+                .into(detailImage)
+
         detailTitle.text = exercise?.name
         detailCategory.text = exercise?.category
         detailDescription.text = exercise?.description
+        setFavorite(exercise?.favorite == 1)
+
+        detailFavorite.setOnClickListener {
+            if (repository.findOne(id)?.favorite == 1) {
+                setFavorite(false)
+                exercise?.favorite = 0
+                repository.update(exercise!!)
+            } else {
+                setFavorite(true)
+                exercise?.favorite = 1
+                repository.update(exercise!!)
+            }
+        }
+    }
+
+    private fun setFavorite(favorite: Boolean) {
+        if (favorite) {
+            detailFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_clicked))
+        } else {
+            detailFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite))
+        }
     }
 }

@@ -3,11 +3,12 @@ package sport.tsse.com.sportapp.data.storage
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
-import sport.tsse.com.sportapp.data.storage.DbSchema.ExerciseTable
-import sport.tsse.com.sportapp.data.storage.DbSchema.WorkoutTable
+import sport.tsse.com.sportapp.data.storage.DbSchema.*
 
 /**
- * Created by mitchelldevries on 26/05/2017.
+ * tsse-sportapp-android
+ *
+ * @author Mitchell de Vries
  */
 class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, VERSION) {
 
@@ -30,6 +31,7 @@ class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, 
     override fun onCreate(db: SQLiteDatabase?) {
         createExerciseTable(db)
         createWorkoutTable(db)
+        createWorkoutExercisesTable(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -44,8 +46,9 @@ class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, 
                 ExerciseTable.Cols.NAME to TEXT,
                 ExerciseTable.Cols.DESCRIPTION to TEXT,
                 ExerciseTable.Cols.CATEGORY to TEXT,
-                ExerciseTable.Cols.WORKOUT_ID to INTEGER
-        )
+                ExerciseTable.Cols.FAVORITE to INTEGER + DEFAULT("0"),
+                ExerciseTable.Cols.IMAGE_URL to TEXT
+                )
     }
 
     private fun createWorkoutTable(db: SQLiteDatabase?) {
@@ -56,6 +59,22 @@ class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, 
         )
     }
 
+    private fun createWorkoutExercisesTable(db: SQLiteDatabase?) {
+        db?.createTable(WorkoutExerciseTable.NAME, true,
+                WorkoutExerciseTable.Cols.ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                WorkoutExerciseTable.Cols.WORKOUT_ID to INTEGER,
+                WorkoutExerciseTable.Cols.EXERCISE_ID to INTEGER,
+                "" to FOREIGN_KEY(
+                        WorkoutExerciseTable.Cols.WORKOUT_ID,
+                        WorkoutTable.NAME,
+                        WorkoutTable.Cols.ID),
+                "" to FOREIGN_KEY(
+                        WorkoutExerciseTable.Cols.EXERCISE_ID,
+                        ExerciseTable.NAME,
+                        ExerciseTable.Cols.ID)
+
+        )
+    }
 }
 
 val Context.database: DbHelper
