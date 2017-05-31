@@ -50,14 +50,16 @@ class ExerciseListFragment : Fragment(), ExerciseListView, SearchView.OnQueryTex
     }
 
     override fun loadExercises(exercises: List<Exercise>) {
-        exerciseListRecyclerView.apply {
-            setHasFixedSize(true)
-            val linearLayoutManager = LinearLayoutManager(context)
-            layoutManager = linearLayoutManager
-            adapter = ExerciseListAdapter(exercises) {
-                startActivity(ExerciseDetailActivity.newIntent(context, it.id))
-                val c = context as AppCompatActivity
-                c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        if (isAdded) {
+            exerciseListRecyclerView.apply {
+                setHasFixedSize(true)
+                val linearLayoutManager = LinearLayoutManager(context)
+                layoutManager = linearLayoutManager
+                adapter = ExerciseListAdapter(exercises) {
+                    startActivity(ExerciseDetailActivity.newIntent(context, it.id))
+                    val c = context as AppCompatActivity
+                    c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                }
             }
         }
     }
