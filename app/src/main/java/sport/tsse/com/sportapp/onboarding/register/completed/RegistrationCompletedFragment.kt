@@ -23,9 +23,7 @@ class RegistrationCompletedFragment : Fragment(), RegistrationCompletedView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val actionbar = context as AppCompatActivity
-        actionbar.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
+       (context as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         presenter = RegistrationCompletedPresenter(this)
         presenter.start()

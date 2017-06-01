@@ -36,8 +36,8 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
 
     fun strongPassword(pass: String): Boolean {
         val expression = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
-        val patron = Pattern.compile(expression)
-        val m = patron.matcher(pass)
+        val pattern = Pattern.compile(expression)
+        val m = pattern.matcher(pass)
         if (m.find())
             return true
         return false
