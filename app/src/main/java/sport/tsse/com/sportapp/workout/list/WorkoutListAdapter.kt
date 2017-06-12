@@ -31,7 +31,7 @@ class WorkoutListAdapter(val workouts: List<Workout>,
     class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(workout: Workout, listener: (Workout) -> Unit) = with(itemView) {
             workoutName.text = workout.name
-            workoutDescription.text = workout.category
+            workoutDescription.text = workout.description
             setOnClickListener { listener(workout) }
         }
     }

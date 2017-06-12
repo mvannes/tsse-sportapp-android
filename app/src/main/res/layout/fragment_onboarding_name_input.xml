@@ -29,48 +29,75 @@
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintTop_creator="1" />
 
-        <EditText
-            android:id="@+id/firstNameInputEditText"
-            android:layout_width="125dp"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/firstNameWrapper"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:gravity="start"
-            android:hint="@string/onboarding_first_name_hint"
-            android:inputType="textPersonName"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintTop_creator="1"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:layout_constraintVertical_bias="0.16"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp" />
-
-        <EditText
-            android:id="@+id/lastNameInputEditText"
-            android:layout_width="139dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:gravity="start"
-            android:hint="@string/onboarding_last_name_hint"
-            android:inputType="textPersonName"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintTop_creator="1"
-            app:layout_constraintLeft_toRightOf="@+id/firstNameInputEditText"
-            android:layout_marginLeft="32dp"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1">
+
+            <EditText
+                android:id="@+id/firstNameInputEditText"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="@string/onboarding_first_name_hint"
+                android:inputType="textPersonName"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorAccent"
+
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lastNameWrapper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/firstNameWrapper"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:layout_constraintVertical_bias="0.161"
-            android:layout_marginStart="32dp" />
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintTop_creator="1">
+
+            <EditText
+                android:id="@+id/lastNameInputEditText"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="@string/onboarding_last_name_hint"
+                android:inputType="textPersonName"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorAccent"
+
+                />
+        </android.support.design.widget.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>
 

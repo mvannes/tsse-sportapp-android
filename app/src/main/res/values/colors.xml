@@ -2,11 +2,13 @@
 <resources>
 
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#3C3B3A</color>
-    <color name="colorAccent">#3C3B3A</color>
+    <color name="colorPrimaryDark">#34495e</color>
+    <color name="colorAccent">#34495e</color>
 
     <color name="white">#FFFFFF</color>
     <color name="grey">#EDEDED</color>
+    <color name="greyLight">#F1F1F1</color>
     <color name="titleText">#3C3B3A</color>
+    <color name="cursorAccent">#FFFFFF</color>
 
 </resources>

@@ -10,6 +10,7 @@ import sport.tsse.com.sportapp.data.Workout
  */
 interface WorkoutListView : BaseView {
 
-   fun populateView(workouts: List<Workout>)
+   fun loadWorkouts(workouts: List<Workout>)
 
+   fun startAddWorkoutActivity()
 }

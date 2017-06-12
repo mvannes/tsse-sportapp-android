@@ -36,7 +36,7 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         presenter                  = ScheduleListPresenter(this, Api());
         presenter.start()
     }
-    
+
      override fun populateView(schedules: List<Schedule>) {
         scheduleList.adapter = ScheduleAdapter(schedules) {
             s ->

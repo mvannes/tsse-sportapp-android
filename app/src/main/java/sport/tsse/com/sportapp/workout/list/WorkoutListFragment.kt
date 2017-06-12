@@ -1,17 +1,20 @@
 package sport.tsse.com.sportapp.workout.list
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_fragment.*
 import kotlinx.android.synthetic.main.fragment_workout_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Workout
 import sport.tsse.com.sportapp.network.Api
+import sport.tsse.com.sportapp.workout.add.AddWorkoutActivity
 import sport.tsse.com.sportapp.workout.detail.WorkoutDetailActivity
 
 /**
@@ -29,16 +32,19 @@ class WorkoutListFragment : Fragment(), WorkoutListView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = WorkoutListPresenter(this, Api())
+        presenter = WorkoutListPresenter(this, Api(), context)
         presenter.start()
+
     }
 
-    override fun populateView(workouts: List<Workout>) {
+    override fun loadWorkouts(workouts: List<Workout>) {
         workoutListRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = WorkoutListAdapter(workouts) {
-                startActivity(Intent(context, WorkoutDetailActivity::class.java))
+                startActivity(WorkoutDetailActivity.newIntent(context, it.id))
+                val c = context as AppCompatActivity
+                c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
         }
     }
@@ -59,13 +65,13 @@ class WorkoutListFragment : Fragment(), WorkoutListView {
 
     override fun showError(errorMessage: String) {
         if (isAdded) {
-            AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMessage)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create()
-                    .show()
         }
+    }
+
+    override fun startAddWorkoutActivity() {
+        startActivity(AddWorkoutActivity.newIntent(context))
+        val c = context as AppCompatActivity
+        c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
 }

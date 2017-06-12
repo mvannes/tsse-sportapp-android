@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar
 import sport.tsse.com.sportapp.onboarding.SingleFragmentOnboardingActivity
 
 class StartupActivity : SingleFragmentOnboardingActivity() {
+
     override fun createFragment(): Fragment {
         return StartupFragment()
     }

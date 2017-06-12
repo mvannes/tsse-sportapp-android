@@ -1,11 +1,12 @@
 package sport.tsse.com.sportapp.workout.list
 
-import android.util.Log
+import android.content.Context
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sport.tsse.com.sportapp.base.BasePresenter
 import sport.tsse.com.sportapp.data.Workout
+import sport.tsse.com.sportapp.data.storage.repository.WorkoutRepository
 import sport.tsse.com.sportapp.network.Api
 
 /**
@@ -14,36 +15,38 @@ import sport.tsse.com.sportapp.network.Api
  * @author Mitchell de Vries
  */
 class WorkoutListPresenter(val view: WorkoutListView,
-                           val api: Api): BasePresenter, Callback<List<Workout>> {
+                           val api: Api,
+                           val context: Context) : BasePresenter, Callback<List<Workout>> {
 
-    private val TAG = "WorkoutListPresenter";
+    val repository = WorkoutRepository(context)
+    var workouts = emptyList<Workout>()
 
     override fun start() {
         view.showProgress()
         api.service.getAllWorkouts().enqueue(this)
-    }
 
-    fun onSuccess(workouts: List<Workout>) {
-        view.hideProgress()
-        view.populateView(workouts)
-    }
+        workouts = repository.findAll()
 
-    fun onFailure(t: Throwable) {
-        view.hideProgress()
-        view.showError(t.message!!)
+        if (workouts.isNotEmpty()) {
+            updateView()
+        }
     }
 
     override fun onResponse(call: Call<List<Workout>>?, response: Response<List<Workout>>?) {
         if (response?.isSuccessful!!) {
-            val workouts = response.body()
-            onSuccess(workouts)
-            Log.i(TAG, "onResponse: " + workouts.toString())
+            workouts = response.body()
+            repository.save(workouts)
         }
+        updateView()
     }
 
     override fun onFailure(call: Call<List<Workout>>?, t: Throwable?) {
-        onFailure(t!!)
-        Log.e(TAG, "onFailure: " + t)
+        updateView()
+        view.showError("Error occurred while fetching new data: " + t?.message!!)
     }
 
+    private fun updateView() {
+        view.hideProgress()
+        view.loadWorkouts(workouts)
+    }
 }
