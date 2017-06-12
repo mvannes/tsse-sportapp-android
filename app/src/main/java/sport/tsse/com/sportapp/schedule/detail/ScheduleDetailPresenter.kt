@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sport.tsse.com.sportapp.base.BasePresenter
+import sport.tsse.com.sportapp.data.Exercise
 import sport.tsse.com.sportapp.data.Schedule
 import sport.tsse.com.sportapp.data.Workout
 import sport.tsse.com.sportapp.network.Api
@@ -18,9 +19,8 @@ class ScheduleDetailPresenter(
 ): BasePresenter, Callback<Schedule> {
 
     override fun start() {
-        view.populateView(Schedule(-1,"name", "string", listOf(Workout(-1, "workout", "whee", emptyList())), 1))
-//        view.showProgress()
-//        api.service.getSchedule(scheduleId).enqueue(this)
+        view.showProgress()
+        api.service.getSchedule(scheduleId).enqueue(this)
     }
 
     override fun onFailure(call: Call<Schedule>?, t: Throwable?) {
