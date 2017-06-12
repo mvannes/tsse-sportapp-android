@@ -18,7 +18,7 @@ class ScheduleDetailPresenter(
 ): BasePresenter, Callback<Schedule> {
 
     override fun start() {
-        view.populateView(Schedule(-1,"name", "string", listOf(Workout(-1, "workout", "whee", "cat", emptyList())), 1))
+        view.populateView(Schedule(-1,"name", "string", listOf(Workout(-1, "workout", "whee", emptyList())), 1))
 //        view.showProgress()
 //        api.service.getSchedule(scheduleId).enqueue(this)
     }

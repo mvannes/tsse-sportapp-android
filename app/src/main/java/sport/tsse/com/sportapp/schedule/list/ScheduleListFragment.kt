@@ -40,10 +40,7 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
      override fun populateView(schedules: List<Schedule>) {
         scheduleList.adapter = ScheduleAdapter(schedules) {
             s ->
-            var intent: Intent = Intent(context, ScheduleDetailActivity::class.java)
-            // Passing the id to ensure we reload in the detail view.
-            intent.putExtra("scheduleId", s.id)
-            startActivity(intent)
+            startActivity(ScheduleDetailActivity.newIntent(context, s.id))
         }
     }
 

@@ -70,6 +70,7 @@
     <string name="title_add_workout">Add Workout</string>
     <string name="title_workout_details">Workout Details</string>
     <string name="title_exercise_details">Exercise Details</string>
+    <string name="title_schedule_details">Schedule Details</string>
     <string name="title_placeholder">Title</string>
     <string name="category_placeholder">Category</string>
     <string name="title_activity_settings">Settings</string>
