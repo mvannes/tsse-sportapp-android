@@ -72,8 +72,6 @@ class ScheduleDetailFragment(val scheduleId: Long): Fragment(), ScheduleDetailVi
             val c = context as AppCompatActivity
             c.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
-
-
     }
 
 }

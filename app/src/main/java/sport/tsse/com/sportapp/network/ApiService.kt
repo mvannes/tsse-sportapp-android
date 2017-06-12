@@ -27,8 +27,6 @@ interface ApiService {
     @GET("schedules/{id}")
     fun getSchedule(@Path("id") id: Long): Call<Schedule>
 
-    @GET("workout")
-
     @POST("users")
     fun saveUser(@Body user: User): Call<User>
 
