@@ -64,6 +64,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".schedule.detail.ScheduleDetailActivity"
+            android:label="Schedule Workout"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".workout.add.AddWorkoutActivity"
             android:label="Detail Workout"
             android:screenOrientation="portrait"

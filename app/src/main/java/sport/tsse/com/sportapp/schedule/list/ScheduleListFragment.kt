@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import sport.tsse.com.sportapp.R
 import sport.tsse.com.sportapp.data.Schedule
-import sport.tsse.com.sportapp.home.HomeFragment
 import sport.tsse.com.sportapp.network.Api
 import sport.tsse.com.sportapp.schedule.add.ScheduleCreationActivity
+import sport.tsse.com.sportapp.schedule.detail.ScheduleDetailActivity
 
 /**
  * tsse-sportapp-android
@@ -32,15 +32,15 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
         fabAddSchedule.setOnClickListener {
             startActivity(Intent(context, ScheduleCreationActivity::class.java))
         }
-        presenter = ScheduleListPresenter(this, Api());
-        presenter.start()
-
         scheduleList.layoutManager = LinearLayoutManager(context)
+        presenter                  = ScheduleListPresenter(this, Api());
+        presenter.start()
     }
-    
-     override fun populateView(schedules: List<Schedule>){
+
+     override fun populateView(schedules: List<Schedule>) {
         scheduleList.adapter = ScheduleAdapter(schedules) {
-            startActivity(Intent(context, HomeFragment::class.java))
+            s ->
+            startActivity(ScheduleDetailActivity.newIntent(context, s.id))
         }
     }
 
@@ -61,11 +61,11 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
     override fun showError(errorMessage: String) {
         if (isAdded) {
             AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(errorMessage)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create()
-                    .show()
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton(android.R.string.ok, null)
+                .create()
+                .show()
         }
     }
 }

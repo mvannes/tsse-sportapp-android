@@ -32,16 +32,7 @@ class ScheduleAdapter(val schedules: List<Schedule>,
 
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(schedule: Schedule, listener: (Schedule) -> Unit) = with(itemView) {
-            val formatter: DateFormat = DateFormat.getDateInstance()
-
             scheduleNameTextView.text = schedule.name
-            startDateTextView.text    = formatter.format(Date()) // Give a Schedule a start date.
-            endDateTextView.text      = formatter.format(Date()) // Give a Schedule an end date
-            // If our schedule's end date in the past, it is old and must be displayed as such.
-            if (false) { // This will be usefull once we move to using Personal schedules.
-                 itemView.setBackgroundColor(R.color.grey)
-                 itemView.alpha = 25F
-            }
             setOnClickListener { listener(schedule) }
         }
     }
