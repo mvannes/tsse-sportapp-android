@@ -17,7 +17,6 @@ class DbSchema {
                 val DESCRIPTION = "description"
                 val CATEGORY = "category"
                 val FAVORITE = "favorite"
-                val IMAGE_URL = "img_url"
             }
         }
     }

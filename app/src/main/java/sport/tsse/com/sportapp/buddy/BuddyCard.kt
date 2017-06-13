@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.mindorks.placeholderview.SwipePlaceHolderView
 import com.mindorks.placeholderview.annotations.Layout
 import com.mindorks.placeholderview.annotations.Resolve
@@ -33,13 +34,14 @@ class BuddyCard(val context: Context,
 
     @Resolve
     private fun onResolved() {
-        if (user.username == "Meter Peijer") {
-            profileImageView?.setImageDrawable(context.resources.getDrawable(R.drawable.peter))
+        Log.d("TAG", "RESOLVED!!")
+        if (user.displayName == "M") {
+            Glide.with(context).load("https://randomuser.me/api/portraits/men/" + user.id + ".jpg").into(profileImageView)
         } else {
-            profileImageView?.setImageDrawable(context.resources.getDrawable(R.drawable.buddy_image_placeholder))
+            Glide.with(context).load("https://randomuser.me/api/portraits/women/" + user.id + ".jpg").into(profileImageView)
         }
 
-        nameAgeTxt?.text = (user.username + ", " + 42)
+        nameAgeTxt?.text = (user.username)
         locationNameTxt?.text = "Amsterdam"
     }
 

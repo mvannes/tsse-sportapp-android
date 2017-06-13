@@ -42,8 +42,7 @@ class ExerciseRepository(context: Context) {
                 ExerciseTable.Cols.NAME to exercise.name,
                 ExerciseTable.Cols.DESCRIPTION to exercise.description,
                 ExerciseTable.Cols.CATEGORY to exercise.category,
-                ExerciseTable.Cols.FAVORITE to exercise.favorite,
-                ExerciseTable.Cols.IMAGE_URL to exercise.imageUrl
+                ExerciseTable.Cols.FAVORITE to exercise.favorite
         )
     }
 
@@ -59,8 +58,7 @@ class ExerciseRepository(context: Context) {
                 ExerciseTable.Cols.NAME to exercise.name,
                 ExerciseTable.Cols.DESCRIPTION to exercise.description,
                 ExerciseTable.Cols.CATEGORY to exercise.category,
-                ExerciseTable.Cols.FAVORITE to exercise.favorite,
-                ExerciseTable.Cols.IMAGE_URL to exercise.imageUrl)
+                ExerciseTable.Cols.FAVORITE to exercise.favorite)
                 .where(ExerciseTable.Cols.ID + " = {exerciseId}", "exerciseId" to exercise.id)
                 .exec()
     }
@@ -71,13 +69,13 @@ class ExerciseRepository(context: Context) {
     }
 
     fun findExercisesForWorkout(id: Int)
-            = database.rawQuery("SELECT e.id, e.name, e.description, e.category " +
+            = database.rawQuery("SELECT e.id, e.name, e.description, e.category, e.favorite " +
             "FROM " + DbSchema.ExerciseTable.NAME + " e " +
             "LEFT JOIN " + DbSchema.WorkoutExerciseTable.NAME + " we ON " +
             "we." + DbSchema.WorkoutExerciseTable.Cols.EXERCISE_ID + " = " +
             "e." + DbSchema.ExerciseTable.Cols.ID +
             " WHERE we." + DbSchema.WorkoutExerciseTable.Cols.WORKOUT_ID + " = " + id, null
-    ).parseList(exerciseParser())
+    ).parseList(exerciseParser()).distinct()
 
 
     private fun queryExercises() = database.select(ExerciseTable.NAME).parseList(exerciseParser())
@@ -90,8 +88,8 @@ class ExerciseRepository(context: Context) {
 
     private fun exerciseParser(): RowParser<Exercise> {
         return rowParser {
-            id: Int, name: String, description: String, category: String, favorite: Int, imgUrl: String? ->
-            Exercise(id, name, description, category, favorite, imgUrl)
+            id: Int, name: String, description: String, category: String, favorite: Int ->
+            Exercise(id, name, description, category, favorite)
         }
     }
 }

@@ -18,7 +18,7 @@ class Api {
         httpClient.addInterceptor(AuthInterceptor("TSSE", "welkom123"))
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://145.28.191.44:8080/api/")
+                .baseUrl("http://192.168.178.53:8080/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build()

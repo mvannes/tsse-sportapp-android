@@ -29,9 +29,9 @@ class ScheduleListFragment : Fragment(), ScheduleListView {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        fabAddSchedule.setOnClickListener {
-            startActivity(Intent(context, ScheduleCreationActivity::class.java))
-        }
+//        fabAddSchedule.setOnClickListener {
+//            startActivity(Intent(context, ScheduleCreationActivity::class.java))
+//        }
         scheduleList.layoutManager = LinearLayoutManager(context)
         presenter                  = ScheduleListPresenter(this, Api());
         presenter.start()

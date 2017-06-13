@@ -46,9 +46,7 @@ class DbHelper(context: Context) : ManagedSQLiteOpenHelper(context, NAME, null, 
                 ExerciseTable.Cols.NAME to TEXT,
                 ExerciseTable.Cols.DESCRIPTION to TEXT,
                 ExerciseTable.Cols.CATEGORY to TEXT,
-                ExerciseTable.Cols.FAVORITE to INTEGER + DEFAULT("0"),
-                ExerciseTable.Cols.IMAGE_URL to TEXT
-                )
+                ExerciseTable.Cols.FAVORITE to INTEGER + DEFAULT("0"))
     }
 
     private fun createWorkoutTable(db: SQLiteDatabase?) {

@@ -46,6 +46,7 @@ class BuddyListFragment : Fragment(), Callback<List<User>> {
         val api = Api()
         api.service.getAllUsers().enqueue(this)
 
+        updateView()
     }
 
     fun updateView() {

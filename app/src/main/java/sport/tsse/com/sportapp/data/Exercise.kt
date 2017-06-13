@@ -10,5 +10,4 @@ data class Exercise(
         val name: String,
         val description: String,
         val category: String,
-        var favorite: Int,
-        var imageUrl: String?)
+        var favorite: Int)

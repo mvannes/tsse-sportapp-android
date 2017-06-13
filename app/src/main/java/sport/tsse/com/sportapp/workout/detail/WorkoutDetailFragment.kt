@@ -20,7 +20,6 @@ import sport.tsse.com.sportapp.exercise.list.ExerciseListAdapter
  */
 class WorkoutDetailFragment : Fragment() {
 
-
     companion object {
         private val ARG_WORKOUT_ID = "workout_id"
 

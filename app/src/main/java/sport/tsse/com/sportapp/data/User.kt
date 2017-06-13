@@ -8,7 +8,7 @@ import java.io.Serializable
  * @author Mitchell de Vries
  * Created by mohammedali on 30/03/2017.
  */
-data class User(val user_id: Int = 0,
+data class User(val id: Int = 0,
                 var birthdate: Long = 0L,
                 var displayName: String = "",
                 var enabled: Boolean = false,
