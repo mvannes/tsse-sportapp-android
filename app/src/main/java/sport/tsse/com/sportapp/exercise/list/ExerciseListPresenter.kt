@@ -1,6 +1,7 @@
 package sport.tsse.com.sportapp.exercise.list
 
 import android.content.Context
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,11 +38,14 @@ class ExerciseListPresenter(val view: ExerciseListView,
             exercises = response.body()
             repository.save(exercises)
         }
+        Log.e("TAG", response.raw().toString())
+
         updateView()
     }
 
     override fun onFailure(call: Call<List<Exercise>>?, t: Throwable?) {
         updateView()
+        Log.e("TAG", t?.message)
         view.showError("Error occurred while fetching new data: " + t?.message!! + ".")
     }
 
