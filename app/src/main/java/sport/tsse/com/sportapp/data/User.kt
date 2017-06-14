@@ -16,6 +16,7 @@ data class User(val id: Int = 0,
                 var lastName: String = "",
                 var password: String = "",
                 var status: String = "",
-                var username: String = ""
+                var username: String = "",
+                var role: String = "USER"
 
 ): Serializable

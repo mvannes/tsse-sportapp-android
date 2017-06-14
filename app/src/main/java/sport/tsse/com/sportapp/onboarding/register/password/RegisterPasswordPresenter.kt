@@ -35,7 +35,7 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
     }
 
     fun strongPassword(pass: String): Boolean {
-        val expression = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
+        val expression = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*()-+&^!]).{6,20})"
         val pattern = Pattern.compile(expression)
         val m = pattern.matcher(pass)
         if (m.find())
@@ -49,7 +49,7 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
             view.goToRegistrationCompletedFragment()
         } else {
             view.hideProgress()
-            view.showError(response.message().plus("Your email address is already being used!"))
+            view.showError(response.message())
         }
     }
 
