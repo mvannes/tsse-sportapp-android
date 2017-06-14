@@ -49,7 +49,7 @@ class RegisterPasswordPresenter(private val view: RegisterPasswordView,
             view.goToRegistrationCompletedFragment()
         } else {
             view.hideProgress()
-            view.showError(response.message().plus("Your email address is already being used!"))
+            view.showError(response.message())
         }
     }
 
