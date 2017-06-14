@@ -62,7 +62,7 @@ class SingleFragmentNavigationActivity : AppCompatActivity(), NavigationView.OnN
                 replaceFragment(ExerciseListFragment(), getString(R.string.exercises))
             }
             R.id.nav_chat -> {
-                startActivity(Intent(this, ChatActivity::class.java))
+//                startActivity(Intent(this, ChatActivity::class.java))
             }
             R.id.nav_buddies -> {
                 replaceFragment(BuddyListFragment(), getString(R.string.buddies))
